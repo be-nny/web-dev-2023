@@ -5,8 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-    <?php include 'navbar.php'; @getNavBar()?>
-    <div id="main">
+    <div class="header">
+        <?php include 'navbar.php'; @getNavBar()?>
+    </div>
+
+    <div class="main">
+        <img id="splash_img" src="/assets/arcade-unsplash.jpg">
+    </div>
+
+    <div class="footer">
 
     </div>
 </body>

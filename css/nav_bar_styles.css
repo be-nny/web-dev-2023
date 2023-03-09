@@ -1,21 +1,25 @@
 .nav_bar{
-    background-color: aqua;
+    background-color: blue;
     padding: 10px 10px 10px 10px;
 
 }
 
 .nav_bar ul{
     font-family: Verdana;
+    list-style: None;
     font-size: 12px;
     margin-top: 0;
     padding: 0px 0px 0px 0px;
 }
 
 .nav_bar li{
-    text-decoration: None;
-    display: inline;
     padding-left: 7px;
     padding-right: 10px;
+}
+
+.nav_bar li a{
+    color: white;
+    text-decoration: None;
 }
 
 .nav_bar li#home{

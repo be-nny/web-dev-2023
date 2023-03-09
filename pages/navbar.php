@@ -8,9 +8,9 @@ function getNavBar(): void {
         
         <div class="nav_bar">
             <ul>
-                <li id="home">Home</li>
-                <li id="memory">Play Pairs</li>
-                <li id="register">Register</li>
+                <li id="home"><a href="">Home</a></li>
+                <li id="memory"><a href="">Pairs</a></li>
+                <li id="register"><a href="">Register</a></li>
             </ul>
         </div>
     ';
@@ -21,9 +21,9 @@ function getNavBar(): void {
         
         <div class="nav_bar">
             <ul>
-                <li id="home">Home</li>
-                <li id="memory">Play Pairs</li>
-                <li id="leaderboard">Leader Board</li>
+                <li id="home"><a href="">Home</a></li>
+                <li id="memory"><a href="">Play Pairs</a></li>
+                <li id="leaderboard"><a href="">Leader Board</a></li>
             </ul>
         </div>
     ';
