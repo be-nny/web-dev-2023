@@ -1,0 +1,40 @@
+.nav_bar{
+    background-color: aqua;
+    padding: 10px 10px 10px 10px;
+
+}
+
+.nav_bar ul{
+    font-family: Verdana;
+    font-size: 12px;
+    margin-top: 0;
+    padding: 0px 0px 0px 0px;
+}
+
+.nav_bar li{
+    text-decoration: None;
+    display: inline;
+    padding-left: 7px;
+    padding-right: 10px;
+}
+
+.nav_bar li#home{
+    float: left;
+}
+
+.nav_bar li#leaderboard{
+    float: right;
+}
+
+.nav_bar li#register{
+    float: right;
+}
+
+.nav_bar li#memory{
+    float: right;
+}
+
+
+
+
+
