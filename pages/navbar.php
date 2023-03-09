@@ -1,5 +1,6 @@
 <?php
 function getNavBar(): void {
+    //get other variables
     $uname = $_COOKIE['uname'];
 
     if(!isset($uname)){
