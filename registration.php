@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="/scripts/avatar.js"></script>
+    <title>Register</title>
 
     <?php
-        include dirname(__DIR__) . '/php/navbar.php';
+        include 'php_scripts/navbar.php';
     ?>
 
 </head>
@@ -16,7 +15,7 @@
     </div>
 
     <div class="login">
-        <form action="/php/register_user.php" method="post">
+        <form action="php_scripts/register_user.php" method="post">
             <label for="uname">User Name</label>
             <br>
             <input type="text" id="uname_input" name="new_uname">

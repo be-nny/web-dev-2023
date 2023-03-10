@@ -14,7 +14,7 @@ function createSession(): void {
 
             session_start();
             $_SESSION['uname'] = $_COOKIE['uname'];
-            header('Location: http://localhost:63343/web-dev-2023/pages/index.php');
+            echo '';
         }
     } else{
         echo "Invalid Username!";

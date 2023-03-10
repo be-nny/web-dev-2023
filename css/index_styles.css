@@ -10,13 +10,43 @@
 
 .splash_text {
     position: absolute;
-    top: 40%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    color: #ffeb00;
     text-align: center;
 }
 
 .splash_text h1, h2{
     font-family: Verdana;
+}
+
+.splash_text h1 {
+    font-family: Verdana;
+    font-size: 64px;
+}
+
+.splash_text h1 a {
+    position: relative;
+    text-decoration: none;
+    color: #ffeb00;
+}
+
+.splash_text h1 a::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    background-color: #ffeb00;
+    bottom: -12px;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
+}
+
+.splash_text h1 a:hover::before{
+    transform-origin: left;
+    transform: scaleX(1);
 }
