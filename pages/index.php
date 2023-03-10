@@ -6,10 +6,10 @@
 
     <link rel="stylesheet" href="/css/index_styles.css">
     <?php
-        session_start();
 
-        include 'navbar.php';
-        include 'splash_registration.php';
+//        unset($_COOKIE['uname']);
+        include dirname(__DIR__) . '/php/navbar.php';
+        include dirname(__DIR__) . '/php/splash_registration.php';
     ?>
 
 </head>
