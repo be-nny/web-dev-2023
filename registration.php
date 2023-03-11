@@ -18,14 +18,18 @@
         <form action="php_scripts/register_user.php" method="post">
             <label for="uname">User Name</label>
             <br>
-            <input type="text" id="uname_input" name="new_user">
+            <input type="text" id="uname_input" name="new_user" required="required">
             <br>
-            <input type="submit" value="Register">
+            <label id="valid_label">Please Enter a name</label>
+            <br>
+            <input id="register_submit" type="submit" value="Register" disabled>
         </form>
     </div>
 
     <div class="avatar_create">
 
     </div>
+
+    <script type="text/javascript" src="scripts/user_name_listener.js"></script>
 </body>
 </html>

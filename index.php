@@ -10,7 +10,7 @@
 //                setcookie('uname', '', (time()-3600)*9, '/');
 
         include 'php_scripts/navbar.php';
-        include 'php_scripts/splash_registration.php';
+        include 'php_scripts/splash_text.php';
     ?>
 </head>
 <body>

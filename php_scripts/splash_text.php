@@ -6,7 +6,7 @@ function getSplash(): void {
         echo '
             <div>
                 <h2>You’re not using a registered session.</h2>   
-                <h1><a href="registration.php">Register Now!</a></h1>
+                <h1><a href="registration.php">Click to Register Now!</a></h1>
             </div>
         ';
     } else{
