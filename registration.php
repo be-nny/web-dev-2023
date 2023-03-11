@@ -18,9 +18,9 @@
         <form action="php_scripts/register_user.php" method="post">
             <label for="uname">User Name</label>
             <br>
-            <input type="text" id="uname_input" name="new_uname">
+            <input type="text" id="uname_input" name="new_user">
             <br>
-            <input type="submit" value="submit">
+            <input type="submit" value="Register">
         </form>
     </div>
 

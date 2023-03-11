@@ -6,8 +6,8 @@
 
     <link rel="stylesheet" href="/css/index_styles.css">
     <?php
-                unset($_COOKIE['uname']);
-                setcookie('uname', '', (time()-3600)*9, '/');
+//                unset($_COOKIE['uname']);
+//                setcookie('uname', '', (time()-3600)*9, '/');
 
         include 'php_scripts/navbar.php';
         include 'php_scripts/splash_registration.php';

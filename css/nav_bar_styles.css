@@ -17,6 +17,10 @@
     padding-right: 10px;
 }
 
+.nav_bar li#user_login{
+    color: white;
+}
+
 .nav_bar li a{
     color: white;
     text-decoration: None;
@@ -44,6 +48,10 @@
 }
 
 .nav_bar li#home{
+    float: left;
+}
+
+.nav_bar li#user_login{
     float: left;
 }
 

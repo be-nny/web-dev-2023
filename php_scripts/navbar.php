@@ -10,12 +10,14 @@ function getNavBar(): void {
         
         <div class="nav_bar">
             <ul>
-                <li id="user_login"></li>
                 <li id="home"><a href="index.php">Home</a></li>
+                <li id="user_login"></li>
                 <li id="memory"><a href="pairs.php">Play Pairs</a></li>
                 <li id="register"><a href="registration.php">Register</a></li>
             </ul>
         </div>
+        <script type="text/javascript" src="scripts/nav_bar_script.js"></script>
+
     ';
 
     } else {
@@ -25,10 +27,12 @@ function getNavBar(): void {
         <div class="nav_bar">
             <ul>
                 <li id="home"><a href="index.php">Home</a></li>
+                <li id="user_login"></li>
                 <li id="memory"><a href="pairs.php">Play Pairs</a></li>
                 <li id="leaderboard"><a href="leaderboard.php">Leader Board</a></li>
             </ul>
         </div>
+        <script type="text/javascript" src="scripts/nav_bar_script.js"></script>
     ';
     }
 }

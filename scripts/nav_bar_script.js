@@ -4,12 +4,12 @@ const getCookie = (cookie_name) =>{
     try{
         return document.cookie.match(re)[0];	// Will raise TypeError if cookie is not found
     }catch{
-        return false;
+        return null;
     }
 }
 
-if(getCookie('uname') !== false){
-    document.getElementById("user_login").innerHTML = "Hello" + getCookie('uname');
+if(getCookie('uname') !== null){
+    document.getElementById("user_login").innerHTML = "Hello " + getCookie('uname');
 } else{
     document.getElementById("user_login").innerHTML = "Not signed in";
 }
