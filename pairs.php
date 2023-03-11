@@ -13,5 +13,9 @@
         <?php @getNavBar()?>
     </div>
 
+    <div class="game">
+        <button id="start_btn">Start the Game</button>
+    </div>
+
 </body>
 </html>

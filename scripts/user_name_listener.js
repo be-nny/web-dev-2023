@@ -6,8 +6,11 @@ function validate(){
     if(text.length > 0 && re.test(text) == false){
         document.getElementById("register_submit").disabled = false;
         document.getElementById("valid_label").innerText = "Valid";
+        document.getElementById("valid_label").style.color = 'green';
     } else{
         document.getElementById("register_submit").disabled = true;
         document.getElementById("valid_label").innerText = "Invalid";
+        document.getElementById("valid_label").style.color = 'red';
+
     }
 }

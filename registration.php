@@ -8,6 +8,9 @@
         include 'php_scripts/navbar.php';
     ?>
 
+    <link rel="stylesheet" href="/css/register_styles.css">
+
+
 </head>
 <body>
     <div class="header">
@@ -20,7 +23,7 @@
             <br>
             <input type="text" id="uname_input" name="new_user" required="required">
             <br>
-            <label id="valid_label">Please Enter a name</label>
+            <label id="valid_label"></label>
             <br>
             <input id="register_submit" type="submit" value="Register" disabled>
         </form>

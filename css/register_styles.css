@@ -1,3 +1,17 @@
+.login {
+    padding: 5px 5px 5px 5px;
+}
+
 .login label{
     font-family: Verdana;
+}
+
+.login form input#uname_input{
+    border-radius: 5px;
+    border-color: dimgrey;
+    width: auto;
+}
+
+.login form label#valid_label{
+    font-size: 12px;
 }
