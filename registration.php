@@ -6,10 +6,10 @@
 
     <?php
         include 'php_scripts/navbar.php';
+        include 'php_scripts/footer.php';
     ?>
 
     <link rel="stylesheet" href="/css/register_styles.css">
-
 
 </head>
 <body>
@@ -21,18 +21,21 @@
         <form action="php_scripts/register_user.php" method="post">
             <label for="uname">User Name</label>
             <br>
-            <input type="text" id="uname_input" name="new_user" required="required">
+            <input type="text" id="uname_input" name="new_user">
             <br>
             <label id="valid_label"></label>
             <br>
             <input id="register_submit" type="submit" value="Register" disabled>
         </form>
     </div>
+    <script type="text/javascript" src="scripts/user_validation.js"></script>
 
     <div class="avatar_create">
 
     </div>
 
-    <script type="text/javascript" src="scripts/user_name_listener.js"></script>
+    <div class="footer">
+        <?php @getFooter()?>
+    </div>
 </body>
 </html>

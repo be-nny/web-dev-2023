@@ -1,6 +1,7 @@
 <?php
 
 function getNavBar(): void {
+
     //get other variables
     $uname = $_COOKIE['uname'];
 
@@ -17,7 +18,6 @@ function getNavBar(): void {
             </ul>
         </div>
         <script type="text/javascript" src="scripts/nav_bar_script.js"></script>
-
     ';
 
     } else {

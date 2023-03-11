@@ -9,7 +9,7 @@ const getCookie = (cookie_name) =>{
 }
 
 if(getCookie('uname') !== null){
-    document.getElementById("user_login").innerHTML = "Hello " + getCookie('uname');
+    document.getElementById("user_login").innerHTML = "Hello, " + getCookie('uname');
 } else{
     document.getElementById("user_login").innerHTML = "Not signed in";
 }

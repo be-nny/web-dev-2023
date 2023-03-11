@@ -6,11 +6,18 @@
 
     <?php
         include 'php_scripts/navbar.php';
+        include 'php_scripts/footer.php';
+
     ?>
+
 </head>
 <body>
     <div class="header">
         <?php @getNavBar()?>
+    </div>
+
+    <div class="footer">
+        <?php @getFooter()?>
     </div>
 </body>
 </html>
