@@ -10,6 +10,7 @@
     ?>
 
     <link rel="stylesheet" href="/css/register_styles.css">
+    <script type="text/javascript" src="scripts/avatar_selection.js"></script>
 
 </head>
 <body>
@@ -25,17 +26,22 @@
             <br>
             <label id="valid_label"></label>
             <br>
+            <div class="avatar_create">
+                <div id="face_select"><script>displayAllFaces();</script></div>
+
+                <div id="eye_select"><script>displayAllEyes();</script></div>
+
+                <div id="mouth_select"><script>displayAllMouths();</script></div>
+            </div>
+            <br>
             <input id="register_submit" type="submit" value="Register" disabled>
         </form>
     </div>
     <script type="text/javascript" src="scripts/user_validation.js"></script>
 
-    <div class="avatar_create">
-
-    </div>
-
     <div class="footer">
         <?php @getFooter()?>
     </div>
 </body>
+
 </html>
