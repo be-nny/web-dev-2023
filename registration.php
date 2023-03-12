@@ -33,7 +33,12 @@
 
                 <div id="mouth_select"><script>displayAllMouths();</script></div>
             </div>
+            <input type="hidden" id="avatar_key" name="avatar_code">
+            <div id="display_avatar">
+
+            </div>
             <br>
+
             <input id="register_submit" type="submit" value="Register" disabled>
         </form>
     </div>

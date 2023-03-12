@@ -1,5 +1,6 @@
 .login {
     padding: 5px 5px 5px 5px;
+    display: flex;
 }
 
 .login label{
@@ -12,16 +13,36 @@
     width: auto;
 }
 
+.login form#register_submit {
+    float: left;
+    position: fixed;
+}
+
 .login form label#valid_label{
     font-size: 12px;
 }
 
+#display_avatar {
+    float: right;
+    width: 200px;
+    height: 200px;
+    margin-left: 5px;
+    position: relative;
+}
+
+.avatarOverlay {
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 10%;
+    width: 150px;
+    height: auto;
+    top: 0;
+    left: 0;
+}
+
 .avatar_create {
+    float: left;
 }
-
-.avatar_create#face_select{
-}
-
 
 .avatar_create img{
     width: 50px;

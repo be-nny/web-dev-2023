@@ -72,4 +72,38 @@ function selectImage(img, id){
 
     img.style.borderColor = 'green';
     img.style.borderWidth = '3px';
+    setAvatarkey();
+    displayAvatar();
+}
+
+function setAvatarkey(){
+    document.getElementById('avatar_key').setAttribute('value', avatar_key);
+}
+
+function displayAvatar(){
+    const mouth_assets = ['mouth/open.png', 'mouth/sad.png', 'mouth/smiling.png', 'mouth/straight.png', 'mouth/surprise.png', 'mouth/teeth.png'];
+    const eye_assets = ['eyes/closed.png', 'eyes/laughing.png', 'eyes/long.png', 'eyes/normal.png', 'eyes/rolling.png', 'eyes/winking.png'];
+    const skin_assets = ['skin/green.png', 'skin/red.png', 'skin/yellow.png']
+
+    const mouth_path = mouth_assets[avatar_key[2]];
+    const eye_path = eye_assets[avatar_key[1]];
+    const skin_path = skin_assets[avatar_key[0]];
+
+    let mouth = document.createElement('img');
+    mouth.src = '/assets/emoji-assets/' + mouth_path;
+    mouth.className = 'avatarOverlay';
+
+    let eye = document.createElement('img');
+    eye.src = '/assets/emoji-assets/' + eye_path;
+    eye.className = 'avatarOverlay';
+
+    let skin = document.createElement('img');
+    skin.src = '/assets/emoji-assets/' + skin_path;
+    skin.className = 'avatarOverlay';
+
+    document.getElementById('display_avatar').innerHTML = null;
+
+    document.getElementById('display_avatar').appendChild(skin);
+    document.getElementById('display_avatar').appendChild(mouth);
+    document.getElementById('display_avatar').appendChild(eye);
 }
