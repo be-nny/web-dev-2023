@@ -6,7 +6,13 @@
 
     <?php
         include 'php_scripts/navbar.php';
+        include 'php_scripts/footer.php';
+
     ?>
+
+    <script type="text/javascript" src="scripts/game.js"></script>
+    <link rel="stylesheet" href="/css/pairs_styles.css">
+
 </head>
 <body>
     <div class="header">
@@ -14,8 +20,15 @@
     </div>
 
     <div class="game">
-        <button id="start_btn">Start the Game</button>
+        <div class="game_splash">
+            <button id="start_btn" onclick="onClickStart()">Start the Game</button>
+            <br>
+            <label id="subtext">Press the button to start to game</label>
+        </div>
     </div>
 
+    <div class="footer">
+        <?php @getFooter()?>
+    </div>
 </body>
 </html>

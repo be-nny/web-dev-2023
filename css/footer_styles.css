@@ -1,0 +1,43 @@
+.footer{
+    background-color: blue;
+    padding: 10px 10px 10px 0px;
+    width: auto;
+    margin-top: auto;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+.footer ul{
+    font-family: Verdana;
+    list-style: None;
+    font-size: 12px;
+    margin-top: 0;
+    padding: 0px 0px 0px 0px;
+}
+
+.footer ul li{
+    padding-left: 7px;
+    padding-right: 10px;
+    display: inline-block;
+    font-family: Verdana;
+    color: white;
+}
+
+.footer ul li a{
+    color: white;
+    text-decoration: None;
+    font-weight: bold;
+    position: relative;
+}
+
+.footer ul li#copyright {
+    float: left;
+}
+
+.footer ul li#github {
+    float: right;
+}

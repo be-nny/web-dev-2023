@@ -1,0 +1,22 @@
+.game_splash {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.game_splash button#start_btn{
+    border-radius: 10px;
+    width: 400px;
+    font-size: 50px;
+    height: auto;
+    font-family: Verdana;
+    font-weight: bold;
+}
+
+.game_splash label#subtext{
+    font-size: 15px;
+    font-family: Verdana;
+}
