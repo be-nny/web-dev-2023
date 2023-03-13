@@ -66,4 +66,8 @@
     .nav_bar li#memory{
         float: right;
     }
+
+    .nav_bar li#avatar_img {
+        float: left ;
+    }
 }

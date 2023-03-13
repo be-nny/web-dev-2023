@@ -66,12 +66,12 @@ function selectImage(img, id){
 
     for(let i = 0; i < document.getElementById(id).childNodes.length; i ++){
         let current_child = document.getElementById(id).children.item(i);
-        current_child.style.borderColor = 'black'
-        current_child.style.borderWidth = '1px';
+        current_child.style.scale = '1';
+        current_child.style.backgroundColor = 'rgba(0,0,255,0)';
     }
 
-    img.style.borderColor = 'green';
-    img.style.borderWidth = '3px';
+    img.style.scale = '1.1';
+    img.style.backgroundColor = 'rgba(0,0,255,0.2)';
     setAvatarkey();
     displayAvatar();
 }

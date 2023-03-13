@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Pairs</title>
-    <script type="text/javascript" src="scripts/game.js"></script>
-    <link rel="stylesheet" href="/css/pairs_styles.css">
 
     <?php
         include 'php_scripts/navbar.php';
         include 'php_scripts/footer.php';
 
     ?>
+
+    <script type="text/javascript" src="scripts/game.js"></script>
+    <link rel="stylesheet" href="/css/pairs_styles.css">
 
 </head>
 <body>
