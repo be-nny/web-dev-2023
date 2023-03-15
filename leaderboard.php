@@ -16,6 +16,10 @@
         <?php @getNavBar()?>
     </div>
 
+    <div id="main">
+
+    </div>
+
     <div class="footer">
         <?php @getFooter()?>
     </div>

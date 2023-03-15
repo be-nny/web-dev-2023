@@ -10,7 +10,6 @@ function displayAllFaces(){
         newSkinAsset.id = counter;
         newSkinAsset.addEventListener('click', function (){selectImage(newSkinAsset, 'face_select')}, false);
 
-
         document.getElementById('face_select').appendChild(newSkinAsset);
         counter += 1;
     });
