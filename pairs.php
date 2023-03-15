@@ -19,7 +19,7 @@
         <?php @getNavBar()?>
     </div>
 
-    <div class="game">
+    <div id="main">
         <div class="game_splash">
             <button id="start_btn" onclick="onClickStart()">Start the Game</button>
             <br>
