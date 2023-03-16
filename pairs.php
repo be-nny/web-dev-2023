@@ -10,8 +10,8 @@
 
     ?>
 
-    <script type="text/javascript" src="scripts/game.js"></script>
     <link rel="stylesheet" href="/css/pairs_styles.css">
+    <link rel="stylesheet" href="/css/card_styles.css">
 
 </head>
 <body>
@@ -19,16 +19,14 @@
         <?php @getNavBar()?>
     </div>
 
-    <div id="main">
-        <div class="game_splash">
-            <button id="start_btn" onclick="onClickStart()">Start the Game</button>
-            <br>
-            <label id="subtext">Press the button to start to game</label>
-        </div>
+    <div id="main_game">
     </div>
 
     <div class="footer">
         <?php @getFooter()?>
     </div>
+
+    <script type="text/javascript" src="scripts/game.js"></script>
+
 </body>
 </html>

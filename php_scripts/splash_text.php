@@ -13,7 +13,7 @@ function getSplash(): void {
         echo '
             <div>
                 <h2>Welcome to Pairs!</h2>
-                <h1><a href="pairs.php">Click here to play!</a></h1>   
+                <h1><a href="pairs.php">Click here to play!</a></h1> 
             </div>
         ';
     }
