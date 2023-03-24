@@ -10,8 +10,7 @@
 
     ?>
 
-    <link rel="stylesheet" href="/css/pairs_styles.css">
-    <link rel="stylesheet" href="/css/card_styles.css">
+    <link rel="stylesheet" href="/css/game-styles.css">
 
 </head>
 <body>
@@ -19,14 +18,15 @@
         <?php @getNavBar()?>
     </div>
 
-    <div id="main_game">
+    <div id="main">
+        <div class="game-container"></div>
     </div>
 
     <div class="footer">
         <?php @getFooter()?>
     </div>
 
-    <script type="text/javascript" src="scripts/game.js"></script>
+    <script type="text/javascript" src="scripts/GameLogic.js"></script>
 
 </body>
 </html>

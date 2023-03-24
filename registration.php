@@ -10,7 +10,7 @@
     ?>
 
     <link rel="stylesheet" href="/css/register_styles.css">
-    <script type="text/javascript" src="scripts/avatar_selection.js"></script>
+    <script type="text/javascript" src="scripts/AvatarSelection.js"></script>
 
 </head>
 <body>
@@ -50,7 +50,7 @@
             <input id="register_submit" type="submit" value="Register" disabled>
         </form>
     </div>
-    <script type="text/javascript" src="scripts/user_validation.js"></script>
+    <script type="text/javascript" src="scripts/UserValidation.js"></script>
 
     <div class="footer">
         <?php @getFooter()?>

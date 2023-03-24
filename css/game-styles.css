@@ -1,0 +1,50 @@
+.game-container {
+    display: grid;
+    background-color: #2196F3;
+    padding: 10px;
+    width: 70%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.card-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 30%;
+    margin-left: 15.5%;
+    transition: all .2s ease-in-out;
+    width: 70%;
+    -webkit-user-drag: none;
+    visibility: hidden;
+
+}
+
+.card-container {
+    position: relative;
+    float: left;
+    background-color: rgba(200, 200, 200);
+    border: 5px solid;
+    padding: 20px;
+    margin: 5px;
+    height: 200px;
+    width: 100%;
+    transition: all .1s ease-in-out;
+    border-radius: 10px;
+}
+
+.main-card-container {
+    width: 70%;
+}
+
+.card-container:hover{
+    transform: scale(1.05);
+    background-color: rgba(150,150,150);
+
+}
+
+.card-container:active{
+    transform: scale(0.9);
+}
