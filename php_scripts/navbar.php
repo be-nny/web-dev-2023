@@ -28,7 +28,7 @@ function getNavBar(): void {
             <ul>
                 <li id="home"><a href="index.php">Home</a></li>
                 <li id="user_login"><script>setUserName();</script></li>
-                <li><div id="display_avatar"><script>displayAvatar();</script></div> </li>
+                <li><div class="display_avatar"><script>displayAvatar();</script></div> </li>
                 <li id="memory"><a href="pairs.php">Play Pairs</a></li>
                 <li id="leaderboard"><a href="leaderboard.php">Leader Board</a></li>
             </ul>

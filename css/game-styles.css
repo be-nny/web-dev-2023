@@ -13,7 +13,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    margin-top: 30%;
+    margin-top: 50px;
     margin-left: 15.5%;
     transition: all .2s ease-in-out;
     width: 70%;
@@ -22,13 +22,13 @@
 
 }
 
-.card-container {
+.front-card-container {
     position: relative;
     float: left;
     background-color: rgba(200, 200, 200);
     border: 5px solid;
-    padding: 20px;
-    margin: 5px;
+    padding: -10px;
+    margin: 10px;
     height: 200px;
     width: 100%;
     transition: all .1s ease-in-out;
@@ -39,12 +39,12 @@
     width: 70%;
 }
 
-.card-container:hover{
+.front-card-container:hover{
     transform: scale(1.05);
     background-color: rgba(150,150,150);
 
 }
 
-.card-container:active{
+.front-card-container:active{
     transform: scale(0.9);
 }

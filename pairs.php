@@ -26,6 +26,7 @@
         <?php @getFooter()?>
     </div>
 
+    <script type="module" src="scripts/MyAnimations.js"></script>
     <script type="text/javascript" src="scripts/GameLogic.js"></script>
 
 </body>

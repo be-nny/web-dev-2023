@@ -1,4 +1,3 @@
-
 let num_pairs = 5;
 const skin_assets = ['skin/green.png', 'skin/red.png', 'skin/yellow.png']
 const eye_assets = ['eyes/closed.png', 'eyes/laughing.png', 'eyes/long.png', 'eyes/normal.png', 'eyes/rolling.png', 'eyes/winking.png'];
@@ -7,8 +6,8 @@ const mouth_assets = ['mouth/open.png', 'mouth/sad.png', 'mouth/smiling.png', 'm
 let cards = [];
 let found_cards = [];
 
-let click_buffer = [];
-
+let click_div_buffer = [];
+let click_card_buffer = [];
 
 let card = {
     mouth: '',
@@ -22,14 +21,14 @@ let card = {
 function setUpGame(){
     document.getElementsByClassName('game-container')[0].style.gridTemplateColumns = 'auto '.repeat(num_pairs);
     for(let i = 0; i < num_pairs*2; i ++){
-        let div = document.createElement('div');
+        let front_div = document.createElement('div');
         let main_div = document.createElement('div');
 
-        div.className = 'card-container';
-        div.id = i.toString();
+        front_div.className = 'front-card-container';
+        front_div.id = i.toString();
 
         main_div.className = 'main-card-container';
-        main_div.appendChild(div);
+        main_div.appendChild(front_div);
         document.getElementsByClassName('game-container')[0].appendChild(main_div);
 
     }
@@ -64,8 +63,6 @@ function addCardToDiv(div, card){
     div.appendChild(mouth_img);
     div.appendChild(eyes_img);
     div.appendChild(same_card_value);
-
-
 }
 
 function cardClick(div){
@@ -76,47 +73,33 @@ function cardClick(div){
         let cardClicked = cards[c];
         if(cardClicked.unique_id == div.childNodes[3].value){
             // <-- flip animation here -->
-            flip(div);
-            click_buffer.push(cardClicked);
-            break;
+            if(found_cards.indexOf(cardClicked) === -1){
+                flip(div);
+                click_card_buffer.push(cardClicked);
+                click_div_buffer.push(div);
+                break;
+            }
         }
     }
 
     // when two cards have been clicked
-    if(click_buffer.length > 1) {
-        let c1 = click_buffer.pop();
-        let c2 = click_buffer.pop();
+    if(click_div_buffer.length > 1 && click_card_buffer.length > 1) {
+        let c1 = click_div_buffer.pop();
+        let c2 = click_div_buffer.pop();
 
-        if (c1.id == c2.id && c1.unique_id != c2.unique_id) {
-            found_cards.push(c1);
-            found_cards.push(c2);
+        let card_1 = click_card_buffer.pop();
+        let card_2 = click_card_buffer.pop();
+
+        click_div_buffer = [];
+        click_card_buffer = [];
+
+        if (card_1.id === card_2.id && card_1.unique_id !== card_2.unique_id) {
+            found_cards.push(card_1);
+            found_cards.push(card_2);
         } else {
             // <-- flip animation here (flip back) -->
-            for (let i = 0; i < document.getElementsByClassName('game-container')[0].childNodes.length; i++) {
-                let card_div = document.getElementsByClassName('card-container')[i];
-                if(found_cards.indexOf(cards[i]) == -1){
-                    setTimeout(() => {flipBack(card_div);}, 500);
-                }
-            }
-        }
-    }
-}
-
-function flip(div){
-    for(let i = 0; i < div.childNodes.length; i ++){
-        div.childNodes[i].style.visibility = 'visible';
-    }
-}
-
-function flipBack(div){
-    let id = div.childNodes[3].value;
-
-    for(let n = 0; n < found_cards.length; n ++){
-        if(found_cards[n].unique_id == id){
-            for(let i = 0; i < div.childNodes.length; i ++){
-                console.log(div);
-                div.childNodes[i].style.visibility = 'hidden';
-            }
+            setTimeout(() => {flipBack(c1);}, 500);
+            setTimeout(() => {flipBack(c2);}, 500);
         }
     }
 }
@@ -145,11 +128,27 @@ function makeDeck(){
         c2.unique_id = unique_id;
         unique_id += 1;
 
-
         cards.push(c1);
         cards.push(c2);
     }
 }
+
+function flip(div){
+    for(let i = 0; i < div.childNodes.length; i ++){
+        div.childNodes[i].style.visibility = 'visible';
+    }
+}
+
+function shake(div){
+
+}
+
+function flipBack(div){
+    for(let i = 0; i < div.childNodes.length; i ++){
+        div.childNodes[i].style.visibility = 'hidden';
+    }
+}
+
 
 function start(){
     makeDeck();
