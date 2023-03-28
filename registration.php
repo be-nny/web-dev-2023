@@ -10,7 +10,6 @@
     ?>
 
     <link rel="stylesheet" href="/css/register_styles.css">
-    <script type="text/javascript" src="scripts/AvatarSelection.js"></script>
 
 </head>
 <body>
@@ -33,6 +32,7 @@
             <label id="header">Customise Avatar</label>
             <br>
 
+            <script type="text/javascript" src="scripts/AvatarSelection.js"></script>
             <div class="avatar_create">
                 <div id="face_select"><script>displayAllFaces();</script></div>
 
@@ -50,11 +50,14 @@
             <input id="register_submit" type="submit" value="Register" disabled>
         </form>
     </div>
-    <script type="text/javascript" src="scripts/UserValidation.js"></script>
 
     <div class="footer">
         <?php @getFooter()?>
     </div>
+
+    <script type="text/javascript" src="scripts/UserValidation.js"></script>
+    <script type="text/javascript" src="scripts/AvatarSelection.js"></script>
+
 </body>
 
 </html>

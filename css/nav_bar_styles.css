@@ -70,19 +70,6 @@
     .nav_bar li#avatar_img {
         float: left ;
     }
-
-    #display_avatar {
-        top: -5px;
-        width: 30px;
-        height: auto;
-        position: relative;
-    }
-
-    .avatarOverlay {
-        position: absolute;
-        width: 30px;
-        height: auto;
-    }
 }
 
 @media screen and (max-width: 500px) {
