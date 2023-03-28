@@ -1,13 +1,21 @@
-let num_pairs = 5;
+
+const num_pairs = 6;
 const skin_assets = ['skin/green.png', 'skin/red.png', 'skin/yellow.png']
 const eye_assets = ['eyes/closed.png', 'eyes/laughing.png', 'eyes/long.png', 'eyes/normal.png', 'eyes/rolling.png', 'eyes/winking.png'];
 const mouth_assets = ['mouth/open.png', 'mouth/sad.png', 'mouth/smiling.png', 'mouth/straight.png', 'mouth/surprise.png', 'mouth/teeth.png'];
+const score_multiplier = 100;
 
 let cards = [];
 let found_cards = [];
-
 let click_div_buffer = [];
 let click_card_buffer = [];
+
+let start_time = 0;
+let end_time = 0;
+let time_taken_secs = 0;
+
+let score = 0;
+let total_attempts = 1;
 
 let card = {
     mouth: '',
@@ -32,6 +40,7 @@ function setUpGame(){
         document.getElementsByClassName('game-container')[0].appendChild(main_div);
 
     }
+
     let temp = Object.create(cards);
     for(let i = temp.length-1; i >=0; i --){
         let random_index = Math.floor(Math.random() * temp.length);
@@ -65,6 +74,46 @@ function addCardToDiv(div, card){
     div.appendChild(same_card_value);
 }
 
+function checkWin(){
+    if(found_cards.length === cards.length){
+        winModal();
+    }
+}
+
+function winModal(){
+    end_time = Date.now();
+
+    setTimeout(() => {
+        for(let i = 0; i < document.getElementsByClassName('card-img').length; i ++){
+            document.getElementsByClassName('card-img')[i].style.visibility = 'hidden';
+        }
+        document.getElementsByClassName('game-container')[0].style.visibility = 'hidden';
+    }, 500);
+
+
+    time_taken_secs = (end_time - start_time) / 1000;
+    score = Math.ceil(time_taken_secs/total_attempts) * score_multiplier;
+
+    document.getElementById("win-container").style.visibility ='visible';
+    document.getElementById('score_label').innerHTML = "Score: " + score;
+    document.getElementById('time_label').innerHTML = "Time Taken: " + time_taken_secs + "s";
+}
+
+function onQuitClick(){
+    let score_json = {
+        'score': score,
+        'time': time_taken_secs,
+        'attempts': total_attempts
+    }
+    // TODO post request to leaderboard
+}
+
+function onTryAgainClick(){
+
+    // replace with /html/
+    window.location.replace("/web-dev-2023/pairs.php");
+}
+
 function cardClick(div){
     // getting the card that is clicked
     // disable any other clicking
@@ -94,14 +143,19 @@ function cardClick(div){
         click_card_buffer = [];
 
         if (card_1.id === card_2.id && card_1.unique_id !== card_2.unique_id) {
+            // if the card is a match
             found_cards.push(card_1);
             found_cards.push(card_2);
         } else {
-            // <-- flip animation here (flip back) -->
+            // <-- flip animation here (flip back) -->]
+            total_attempts += 1;
             setTimeout(() => {flipBack(c1);}, 500);
             setTimeout(() => {flipBack(c2);}, 500);
         }
     }
+
+    //checking if the user has won
+    checkWin();
 }
 
 function makeDeck(){
@@ -143,16 +197,20 @@ function shake(div){
 
 }
 
-function flipBack(div){
-    for(let i = 0; i < div.childNodes.length; i ++){
+function flipBack(div) {
+    for (let i = 0; i < div.childNodes.length; i++) {
         div.childNodes[i].style.visibility = 'hidden';
     }
 }
 
+function start() {
 
-function start(){
+    // hiding the start button and showing the card pane
+    document.getElementsByClassName('game-container')[0].style.visibility = 'visible';
+    document.getElementById("start-btn").style.visibility = 'hidden';
+
     makeDeck();
     setUpGame();
-}
 
-start();
+    start_time = Date.now();
+}
