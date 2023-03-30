@@ -20,11 +20,13 @@
     </div>
 
     <div id="main">
+        <!-- visible when the user has won -->
         <div id="win-container">
             <h1>You've Won!</h1>
             <h3>Play again?</h3>
             <button id='play_btn' type="button" onclick="onTryAgainClick();">Yes</button>
             <button id='quit_btn' type='button' onclick="onQuitClick();">No</button>
+            <br>
             <label id="score_label"></label>
             <label id="time_label"></label>
         </div>

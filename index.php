@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/index_styles.css">
 
     <?php
-
+        session_start();
 //        unset($_COOKIE['uname']);
 //        setcookie('uname', '', (time()-3600)*9, '/');
 
