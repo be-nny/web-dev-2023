@@ -44,7 +44,7 @@ if(isset($_POST['data']) && isset($_POST['user'])){
         }
     }
 
-    // if its a user's first time, it is appended to the list.
+    // if it's a user's first time, it is appended to the list.
     if(!$isUserExist){
         $tmp = json_decode(file_get_contents(SCORES_FILE_PATH), true);
         array_push($tmp, $new_score_json);

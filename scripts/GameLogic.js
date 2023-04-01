@@ -99,11 +99,10 @@ function winModal(){
 }
 
 function onQuitClick(){
-    // TODO post request to leaderboard
     let http = new XMLHttpRequest();
     let data = new FormData();
-    const user = cookie('uname');
 
+    const user = cookie('uname');
     const json_data = '{"' + user + '" : {"score": "' + score + '", "time": "' + time_taken_secs + '","attempts": "' + total_attempts + '"}}';
 
     data.append('data', JSON.stringify(json_data));

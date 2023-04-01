@@ -7,7 +7,6 @@
     <?php
         include 'php_scripts/navbar.php';
         include 'php_scripts/footer.php';
-
     ?>
 
     <link rel="stylesheet" href="/css/game-styles.css">

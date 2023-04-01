@@ -8,6 +8,12 @@
 
     <?php
         session_start();
+
+        if(isset($_COOKIE['uname']) && isset($_COOKIE['avatar_num'])){
+            $_SESSION['usr_session_name'] = $_COOKIE['uname'];
+            $_SESSION['usr_session_avatar'] = $_COOKIE['avatar_num'];
+        }
+
 //        unset($_COOKIE['uname']);
 //        setcookie('uname', '', (time()-3600)*9, '/');
 
