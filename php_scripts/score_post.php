@@ -28,16 +28,18 @@ if(isset($_POST['data']) && isset($_POST['user'])){
                     $new_time = $new_score_json[$key]['time'];
                     $new_attempts = $new_score_json[$key]['attempts'];
 
-                    $json_file_data[$key]['score'] = $new_score;
-                    $json_file_data[$key]['time'] = $new_time;
-                    $json_file_data[$key]['attempts'] = $new_attempts;
+                    if($json_file_data[$key]['score'] < $new_score){
+                        $json_file_data[$key]['score'] = $new_score;
+                        $json_file_data[$key]['time'] = $new_time;
+                        $json_file_data[$key]['attempts'] = $new_attempts;
 
-                    // replacing the data in the array with the new data
-                    $replace_data = [$i => $json_file_data];
-                    $raw_data = array_replace($raw_data, $replace_data);
+                        // replacing the data in the array with the new data
+                        $replace_data = [$i => $json_file_data];
+                        $raw_data = array_replace($raw_data, $replace_data);
 
-                    // rewrite
-                    file_put_contents(SCORES_FILE_PATH, json_encode($raw_data));
+                        // rewrite
+                        file_put_contents(SCORES_FILE_PATH, json_encode($raw_data));
+                    }
                     break;
                 }
             }

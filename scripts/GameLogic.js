@@ -112,6 +112,9 @@ function onQuitClick(){
         console.log(this.responseText);
     };
     http.send(data);
+
+    window.location.replace("/web-dev-2023/index.php");
+
 }
 
 const cookie = (cookie_name) =>{

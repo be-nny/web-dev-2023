@@ -20,7 +20,7 @@
     </div>
 
     <div class="main">
-        <h1>Leaderboard Scores</h1>
+        <div id="leader_title">Leaderboard Scores</div>
         <div id="table-container">
             <table id="leaderboard-table">
                 <?php getScoresTable();?>
