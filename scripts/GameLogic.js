@@ -4,7 +4,6 @@ const skin_assets = ['skin/green.png', 'skin/red.png', 'skin/yellow.png']
 const eye_assets = ['eyes/closed.png', 'eyes/laughing.png', 'eyes/long.png', 'eyes/normal.png', 'eyes/rolling.png', 'eyes/winking.png'];
 const mouth_assets = ['mouth/open.png', 'mouth/sad.png', 'mouth/smiling.png', 'mouth/straight.png', 'mouth/surprise.png', 'mouth/teeth.png'];
 const score_multiplier = 100;
-
 let cards = [];
 let found_cards = [];
 let click_div_buffer = [];
@@ -92,7 +91,7 @@ function winModal(){
 
 
     time_taken_secs = (end_time - start_time) / 1000;
-    score = Math.ceil(time_taken_secs/total_attempts) * score_multiplier;
+    score = Math.ceil((time_taken_secs/total_attempts)*score_multiplier);
 
     document.getElementById("win-container").style.visibility ='visible';
     document.getElementById('score_label').innerHTML = "Score: " + score;
@@ -100,16 +99,35 @@ function winModal(){
 }
 
 function onQuitClick(){
-    let score_json = {
-        'score': score,
-        'time': time_taken_secs,
-        'attempts': total_attempts
+    let http = new XMLHttpRequest();
+    let data = new FormData();
+
+    const user = cookie('uname');
+    const json_data = '{"' + user + '" : {"score": "' + score + '", "time": "' + time_taken_secs + '","attempts": "' + total_attempts + '"}}';
+
+    data.append('data', JSON.stringify(json_data));
+    data.append('user', user);
+    http.open('POST', '/php_scripts/score_post.php', true);
+    http.onload = function (){
+        console.log(this.responseText);
+    };
+    http.send(data);
+
+    // window.location.replace("/web-dev-2023/index.php");
+
+}
+
+const cookie = (cookie_name) =>{
+    // Construct a RegExp object as to include the variable name
+    const re = new RegExp(`(?<=${cookie_name}=)[^;]*`);
+    try{
+        return document.cookie.match(re)[0];	// Will raise TypeError if cookie is not found
+    }catch{
+        return null;
     }
-    // TODO post request to leaderboard
 }
 
 function onTryAgainClick(){
-
     // replace with /html/
     window.location.replace("/web-dev-2023/pairs.php");
 }

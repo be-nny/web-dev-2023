@@ -1,0 +1,40 @@
+#table-container{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 60%;
+}
+
+#leaderboard-table {
+    font-family: Verdana;
+    border-collapse: collapse;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.4);
+    border-spacing: 2px;
+}
+
+#leader_title{
+    margin: auto;
+    font-size: 40px;
+    font-family: Verdana;
+    font-weight: 300;
+    text-align: center;
+}
+
+#leaderboard-table td, th{
+    border: 1px solid #4c4c4c;
+    font-size: 15px;
+}
+
+#leaderboard-table td{
+    text-align: center;
+}
+
+#leaderboard-table th{
+    background-color: blue;
+    font-size: 20px;
+    color: white;
+
+}

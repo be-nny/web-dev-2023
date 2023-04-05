@@ -7,8 +7,11 @@
     <?php
         include 'php_scripts/navbar.php';
         include 'php_scripts/footer.php';
-
+        include 'php_scripts/get_score_table.php';
     ?>
+
+    <link rel="stylesheet" href="/css/leader_board_styles.css">
+
 
 </head>
 <body>
@@ -16,8 +19,13 @@
         <?php @getNavBar()?>
     </div>
 
-    <div id="main">
-
+    <div class="main">
+        <div id="leader_title">Leaderboard Scores</div>
+        <div id="table-container">
+            <table id="leaderboard-table">
+                <?php getScoresTable();?>
+            </table>
+        </div>
     </div>
 
     <div class="footer">
