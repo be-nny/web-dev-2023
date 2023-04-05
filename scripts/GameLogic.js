@@ -113,7 +113,7 @@ function onQuitClick(){
     };
     http.send(data);
 
-    window.location.replace("/web-dev-2023/index.php");
+    // window.location.replace("/web-dev-2023/index.php");
 
 }
 
