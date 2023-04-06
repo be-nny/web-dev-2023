@@ -6,7 +6,7 @@
     background-color: grey;
     box-shadow: 5px 5px 4px 3px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    top: 50%;
+    top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
     visibility: hidden;
@@ -72,6 +72,7 @@
     width: 85%;
     perspective: 1000px;
     transition: all .1s ease-in;
+    cursor: grab;
 }
 
 .main-card-container:hover {

@@ -33,7 +33,8 @@
         <div class="start-container">
             <button id='start-btn' type="button" onclick="start();">Start Game!</button>
         </div>
-        <div class="game-container"></div>
+        <div class="game-container">
+        </div>
     </div>
 
     <div class="footer">
