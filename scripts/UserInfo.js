@@ -16,8 +16,7 @@ function setUserName(){
     }
 }
 
-function displayAvatar(){
-    avatar_key = getCookie('avatar_num');
+function displayAvatar(avatar_key){
 
     const mouth_assets = ['mouth/open.png', 'mouth/sad.png', 'mouth/smiling.png', 'mouth/straight.png', 'mouth/surprise.png', 'mouth/teeth.png'];
     const eye_assets = ['eyes/closed.png', 'eyes/laughing.png', 'eyes/long.png', 'eyes/normal.png', 'eyes/rolling.png', 'eyes/winking.png'];

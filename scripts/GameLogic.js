@@ -24,6 +24,34 @@ let card = {
     unique_id: null
 };
 
+function makeDeck(){
+    let unique_id = 0;
+
+    for(let i = 0; i < num_pairs; i ++){
+        let rand_mouth = Math.floor(Math.random() * mouth_assets.length);
+        let rand_skin = Math.floor(Math.random() * skin_assets.length);
+        let rand_eyes = Math.floor(Math.random() * eye_assets.length);
+
+        let c1 = Object.create(card);
+        c1.id = i;
+        c1.mouth = "/assets/emoji-assets/" + mouth_assets.at(rand_mouth);
+        c1.skin = "/assets/emoji-assets/" + skin_assets.at(rand_skin);
+        c1.eyes = "/assets/emoji-assets/" + eye_assets.at(rand_eyes);
+        c1.unique_id = unique_id;
+        unique_id += 1;
+
+        let c2 = Object.create(card);
+        c2.id = i;
+        c2.mouth = "/assets/emoji-assets/" + mouth_assets.at(rand_mouth);
+        c2.skin = "/assets/emoji-assets/" + skin_assets.at(rand_skin);
+        c2.eyes = "/assets/emoji-assets/" + eye_assets.at(rand_eyes);
+        c2.unique_id = unique_id;
+        unique_id += 1;
+
+        cards.push(c1);
+        cards.push(c2);
+    }
+}
 
 function setUpGame(){
     document.getElementsByClassName('game-container')[0].style.gridTemplateColumns = 'auto '.repeat(num_pairs);
@@ -75,7 +103,9 @@ function addCardToDiv(div, card){
 
 function checkWin(){
     if(found_cards.length === cards.length){
-        winModal();
+        setTimeout(() => {
+            winModal();
+            }, 1000);
     }
 }
 
@@ -113,7 +143,7 @@ function onQuitClick(){
     };
     http.send(data);
 
-    // window.location.replace("/web-dev-2023/index.php");
+    window.location.replace("/web-dev-2023/index.php");
 
 }
 
@@ -141,7 +171,7 @@ function cardClick(div){
         if(cardClicked.unique_id == div.childNodes[3].value){
             // <-- flip animation here -->
             if(found_cards.indexOf(cardClicked) === -1){
-                flip(div);
+                flipAnimation(div);
                 click_card_buffer.push(cardClicked);
                 click_div_buffer.push(div);
                 break;
@@ -167,8 +197,12 @@ function cardClick(div){
         } else {
             // <-- flip animation here (flip back) -->]
             total_attempts += 1;
-            setTimeout(() => {flipBack(c1);}, 500);
-            setTimeout(() => {flipBack(c2);}, 500);
+
+            // flip them back
+            setTimeout(() => {
+                flipBackAnimation(c1);
+                setTimeout(() => {flipBackAnimation(c2);}, 500);
+            }, 1000);
         }
     }
 
@@ -176,48 +210,46 @@ function cardClick(div){
     checkWin();
 }
 
-function makeDeck(){
-    let unique_id = 0;
 
-    for(let i = 0; i < num_pairs; i ++){
-        let rand_mouth = Math.floor(Math.random() * mouth_assets.length);
-        let rand_skin = Math.floor(Math.random() * skin_assets.length);
-        let rand_eyes = Math.floor(Math.random() * eye_assets.length);
+function flipAnimation(div){
+    let id = null;
+    let pos = 0;
+    clearInterval(id);
 
-        let c1 = Object.create(card);
-        c1.id = i;
-        c1.mouth = "/assets/emoji-assets/" + mouth_assets.at(rand_mouth);
-        c1.skin = "/assets/emoji-assets/" + skin_assets.at(rand_skin);
-        c1.eyes = "/assets/emoji-assets/" + eye_assets.at(rand_eyes);
-        c1.unique_id = unique_id;
-        unique_id += 1;
-
-        let c2 = Object.create(card);
-        c2.id = i;
-        c2.mouth = "/assets/emoji-assets/" + mouth_assets.at(rand_mouth);
-        c2.skin = "/assets/emoji-assets/" + skin_assets.at(rand_skin);
-        c2.eyes = "/assets/emoji-assets/" + eye_assets.at(rand_eyes);
-        c2.unique_id = unique_id;
-        unique_id += 1;
-
-        cards.push(c1);
-        cards.push(c2);
+    id = setInterval(frame, 2);
+    function frame(){
+        if(pos >= 180 ){
+            clearInterval(id);
+        } else{
+            pos ++ ;
+            div.style.transform = 'rotateY(' + pos + 'deg)';
+            if(pos > 90){
+                for(let i = 0; i < div.childNodes.length; i ++){
+                    div.childNodes[i].style.visibility = 'visible';
+                }
+            }
+        }
     }
 }
 
-function flip(div){
-    for(let i = 0; i < div.childNodes.length; i ++){
-        div.childNodes[i].style.visibility = 'visible';
-    }
-}
+function flipBackAnimation(div){
+    let id = null;
+    let pos = 180;
+    clearInterval(id);
 
-function shake(div){
-
-}
-
-function flipBack(div) {
-    for (let i = 0; i < div.childNodes.length; i++) {
-        div.childNodes[i].style.visibility = 'hidden';
+    id = setInterval(frame, 2);
+    function frame(){
+        if(pos <= 0){
+            clearInterval(id);
+        } else{
+            pos --;
+            div.style.transform = 'rotateY(' + -pos + 'deg)';
+            if(pos < 90){
+                for(let i = 0; i < div.childNodes.length; i ++){
+                    div.childNodes[i].style.visibility = 'hidden';
+                }
+            }
+        }
     }
 }
 
