@@ -6,22 +6,22 @@
     background-color: grey;
     box-shadow: 5px 5px 4px 3px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    top: 50%;
+    top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
     visibility: hidden;
 }
 
-@media (min-aspect-ratio: 16/10) {
+@media (device-aspect-ratio: 16/10) {
     .card-img {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        transition: all .2s ease-in-out;
         width: 80%;
         -webkit-user-drag: none;
         visibility: hidden;
+        transform-style: preserve-3d;
 
     }
 
@@ -29,28 +29,28 @@
         position: relative;
         float: left;
         background-color: rgba(200, 200, 200);
-        border: 5px solid;
-        margin: 10px;
-        height: 200px;
+        border: 10px solid white;
+        margin: 7px;
+        height: 230px;
+        padding: -15px;
         width: 100%;
-        transition: all .1s ease-in-out;
-        border-radius: 10px;
+        transform-style: preserve-3d;
+        border-radius: 20px;
         box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.4);
 
     }
 }
 
-@media (max-aspect-ratio: 16/9) {
+@media (device-aspect-ratio: 16/9) {
     .card-img {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        transition: all .2s ease-in-out;
         width: 80%;
         -webkit-user-drag: none;
         visibility: hidden;
-
+        transform-style: preserve-3d;
     }
 
     .front-card-container {
@@ -61,7 +61,7 @@
         margin: 10px;
         height: 300px;
         width: 100%;
-        transition: all .1s ease-in-out;
+        transform-style: preserve-3d;
         border-radius: 10px;
         box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.4);
 
@@ -70,16 +70,13 @@
 
 .main-card-container {
     width: 85%;
+    perspective: 1000px;
+    transition: all .1s ease-in;
+    cursor: grab;
 }
 
-.front-card-container:hover{
+.main-card-container:hover {
     transform: scale(1.05);
-    background-color: rgba(150,150,150);
-
-}
-
-.front-card-container:active{
-    transform: scale(0.9);
 }
 
 #start-btn{
