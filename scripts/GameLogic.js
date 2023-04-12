@@ -1,9 +1,9 @@
-
 const num_pairs = 6;
 const skin_assets = ['skin/green.png', 'skin/red.png', 'skin/yellow.png']
 const eye_assets = ['eyes/closed.png', 'eyes/laughing.png', 'eyes/long.png', 'eyes/normal.png', 'eyes/rolling.png', 'eyes/winking.png'];
 const mouth_assets = ['mouth/open.png', 'mouth/sad.png', 'mouth/smiling.png', 'mouth/straight.png', 'mouth/surprise.png', 'mouth/teeth.png'];
 const score_multiplier = 1000;
+
 let cards = [];
 let found_cards = [];
 let click_div_buffer = [];
@@ -12,7 +12,6 @@ let click_card_buffer = [];
 let start_time = 0;
 let end_time = 0;
 let time_taken_secs = 0;
-
 let score = 0;
 let total_attempts = 1;
 
@@ -51,6 +50,15 @@ function makeDeck(){
         cards.push(c1);
         cards.push(c2);
     }
+}
+
+function isDuplicate(card) {
+    cards.forEach((c) =>{
+        if(card.eyes == c.eyes && card.skin == c.skin && card.eyes == c.eyes){
+            return true;
+        }
+    });
+    return false;
 }
 
 function setUpGame(){
@@ -128,6 +136,16 @@ function winModal(){
     document.getElementById('time_label').innerHTML = "Time Taken: " + time_taken_secs + "s";
 }
 
+const cookie = (cookie_name) =>{
+    // Construct a RegExp object as to include the variable name
+    const re = new RegExp(`(?<=${cookie_name}=)[^;]*`);
+    try{
+        return document.cookie.match(re)[0];	// Will raise TypeError if cookie is not found
+    }catch{
+        return null;
+    }
+}
+
 function onQuitClick(){
     let http = new XMLHttpRequest();
     let data = new FormData();
@@ -142,23 +160,13 @@ function onQuitClick(){
     };
     http.send(data);
 
-    window.location.replace("/index.php");
+    window.location.replace("/web-dev-2023/index.php");
 
-}
-
-const cookie = (cookie_name) =>{
-    // Construct a RegExp object as to include the variable name
-    const re = new RegExp(`(?<=${cookie_name}=)[^;]*`);
-    try{
-        return document.cookie.match(re)[0];	// Will raise TypeError if cookie is not found
-    }catch{
-        return null;
-    }
 }
 
 function onTryAgainClick(){
     // replace with /html/
-    window.location.replace("/pairs.php");
+    window.location.replace("/web-dev-2023/pairs.php");
 }
 
 function cardClick(div){
@@ -201,7 +209,7 @@ function cardClick(div){
             setTimeout(() => {
                 flipBackAnimation(c1);
                 setTimeout(() => {flipBackAnimation(c2);}, 500);
-            }, 1000);
+            }, 800);
         }
     }
 

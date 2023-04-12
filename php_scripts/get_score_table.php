@@ -17,8 +17,8 @@ function getScoresTable(): void{
             foreach ($user_data as $usr => $value){
                 $row = '<tr>
                             <td>' . $usr . '</td>
-                            <td>' . $user_data[$usr]['score'] .'</td>
-                            <td>' . $user_data[$usr]['time'] .'</td>
+                            <td>' . $value['score'] .'</td>
+                            <td>' . $value['time'] .'</td>
                         </tr>';
             }
             $table .= $row;

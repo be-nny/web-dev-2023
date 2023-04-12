@@ -15,11 +15,11 @@
 
 </head>
 <body>
-    <div class="header">
+    <div id="header">
         <?php @getNavBar()?>
     </div>
 
-    <div class="main">
+    <div id="main">
         <div id="leader_title">Leaderboard Scores</div>
         <div id="table-container">
             <table id="leaderboard-table">
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="footer">
+    <div id="footer">
         <?php @getFooter()?>
     </div>
 </body>
