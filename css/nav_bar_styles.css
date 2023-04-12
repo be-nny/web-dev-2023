@@ -70,6 +70,17 @@
     .nav_bar li#avatar_img {
         float: left ;
     }
+
+    #nav-bar-icon {
+        position: relative;
+    }
+
+    .navAvatarOverlay {
+        margin-top: -5px;
+        position: absolute;
+        width: 30px;
+        height: auto;
+    }
 }
 
 @media screen and (max-width: 500px) {

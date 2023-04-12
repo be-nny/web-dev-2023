@@ -12,60 +12,31 @@
     visibility: hidden;
 }
 
-@media (device-aspect-ratio: 16/10) {
-    .card-img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 80%;
-        -webkit-user-drag: none;
-        visibility: hidden;
-        transform-style: preserve-3d;
+.card-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    -webkit-user-drag: none;
+    visibility: hidden;
+    transform-style: preserve-3d;
 
-    }
-
-    .front-card-container {
-        position: relative;
-        float: left;
-        background-color: rgba(200, 200, 200);
-        border: 10px solid white;
-        margin: 7px;
-        height: 230px;
-        padding: -15px;
-        width: 100%;
-        transform-style: preserve-3d;
-        border-radius: 20px;
-        box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.4);
-
-    }
 }
 
-@media (device-aspect-ratio: 16/9) {
-    .card-img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 80%;
-        -webkit-user-drag: none;
-        visibility: hidden;
-        transform-style: preserve-3d;
-    }
+.front-card-container {
+    position: relative;
+    float: left;
+    background-color: rgba(200, 200, 200);
+    border: 10px solid white;
+    margin: 7px;
+    height: 230px;
+    padding: -15px;
+    width: 100%;
+    transform-style: preserve-3d;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.4);
 
-    .front-card-container {
-        position: relative;
-        float: left;
-        background-color: rgba(200, 200, 200);
-        border: 5px solid;
-        margin: 10px;
-        height: 300px;
-        width: 100%;
-        transform-style: preserve-3d;
-        border-radius: 10px;
-        box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.4);
-
-    }
 }
 
 .main-card-container {
@@ -97,7 +68,6 @@
     border-radius: 5px;
     box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.4);
 
-    display: inline-block;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -112,22 +82,24 @@
     font-weight: inherit;
 }
 
-
-#play_btn {
+#win-container button{
+    padding: 5px;
+    width: 100px;
+    height: auto;
     position: relative;
     border-radius: 5px;
     border-style: solid;
     border-color: #4c4c4c;
-    width: 60px;
-    padding: 2px;
+    margin: 5px;
 }
 
-#quit_btn {
-    position: relative;
-    border-radius: 5px;
-    border-style: solid;
-    border-color: #4c4c4c;
-    width: 60px;
-    padding: 2px;
+#win-container#play_btn{
+    margin-left: 0;
+    margin-right: auto;
+}
+
+#win-container#quit_btn{
+    margin-right: 0;
+    margin-left: auto;
 
 }

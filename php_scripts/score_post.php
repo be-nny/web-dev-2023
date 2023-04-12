@@ -65,6 +65,7 @@ function insertScore($new_score_obj, $scores, $new_score) : array {
     } else{
         // insertion sort
         for($i = 0; $i < sizeof($scores); $i ++){
+            
             foreach ($scores[$i] as $key => $value){
                 if(intval($value['score']) < intval($new_score)){
                     array_splice($temp, $i, 0, array($new_score_obj));
