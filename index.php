@@ -19,6 +19,7 @@
     </div>
 
     <div class="main">
+        <img id="play_img" src="assets/splash-image.png" alt="how_to_play">
         <img id="splash_img" src="assets/arcade-unsplash.jpg" alt="splash_screen">
 
         <div class="splash_text">

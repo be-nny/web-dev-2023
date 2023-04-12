@@ -31,7 +31,12 @@
 
         <div class="start-container">
             <button id='start-btn' type="button" onclick="start();">Start Game!</button>
+
+            <img src="assets/splash-image.png" id="splash_img">
         </div>
+
+
+
         <div class="game-container">
         </div>
     </div>

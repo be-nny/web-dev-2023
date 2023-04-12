@@ -265,6 +265,8 @@ function start() {
     // hiding the start button and showing the card pane
     document.getElementsByClassName('game-container')[0].style.visibility = 'visible';
     document.getElementById("start-btn").style.visibility = 'hidden';
+    document.getElementById("splash_img").style.visibility = 'hidden';
+
 
     makeDeck();
     setUpGame();
