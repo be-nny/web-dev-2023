@@ -10,7 +10,7 @@ let click_div_buffer = [];
 let click_card_buffer = [];
 
 let start_time = 0;
-let end_time = 0;
+let timerInterval;
 let time_taken_secs = 0;
 let score = 0;
 let total_attempts = 1;
@@ -118,7 +118,7 @@ function checkWin(){
 }
 
 function winModal(){
-    end_time = Date.now();
+    clearInterval(timerInterval);
 
     setTimeout(() => {
         for(let i = 0; i < document.getElementsByClassName('card-img').length; i ++){
@@ -128,7 +128,6 @@ function winModal(){
     }, 500);
 
 
-    time_taken_secs = (end_time - start_time) / 1000;
     score = Math.ceil(score_multiplier/(Math.log10(time_taken_secs)*total_attempts));
 
     document.getElementById("win-container").style.visibility ='visible';
@@ -160,13 +159,13 @@ function onQuitClick(){
     };
     http.send(data);
 
-    window.location.replace("/web-dev-2023/index.php");
+    window.location.replace("/html/index.php");
 
 }
 
 function onTryAgainClick(){
     // replace with /html/
-    window.location.replace("/web-dev-2023/pairs.php");
+    window.location.replace("/html/pairs.php");
 }
 
 function cardClick(div){
@@ -272,4 +271,13 @@ function start() {
     setUpGame();
 
     start_time = Date.now();
+    timerInterval = setInterval(function (){
+        let current_time = Date.now() / 1000;
+        time_taken_secs = Math.round(((current_time - start_time / 1000) + Number.EPSILON) * 100) / 100;
+        if(!time_taken_secs.toString().includes(".")){
+            time_taken_secs += ".00";
+        }
+        document.getElementById("timer").innerHTML = time_taken_secs;
+
+    }, 10);
 }

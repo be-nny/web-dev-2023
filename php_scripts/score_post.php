@@ -47,6 +47,7 @@ if(isset($_POST['data']) && isset($_POST['user'])){
 
     // if it's a new user
     if($isNewUser){
+        echo 'new user';
         $new_score_val = $new_score_json[$_POST['user']]['score'];
         file_put_contents(SCORES_FILE_PATH, json_encode(insertScore($new_score_json, $raw_data, $new_score_val)), LOCK_EX);
     }
@@ -58,7 +59,7 @@ if(isset($_POST['data']) && isset($_POST['user'])){
 
 function insertScore($new_score_obj, $scores, $new_score) : array {
     $temp = $scores;
-
+    $isInserted = false;
     // if the score is the first one to be written to the json file
     if(sizeof($scores) == 0){
         $temp[] = $new_score_obj;
@@ -68,9 +69,15 @@ function insertScore($new_score_obj, $scores, $new_score) : array {
             
             foreach ($scores[$i] as $key => $value){
                 if(intval($value['score']) < intval($new_score)){
+                    $isInserted = true;
                     array_splice($temp, $i, 0, array($new_score_obj));
                 }
             }
+        }
+
+        // if it's the new lowest score
+        if(!$isInserted){
+            array_push($temp, $new_score_obj);
         }
     }
 

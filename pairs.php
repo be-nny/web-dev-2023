@@ -20,6 +20,8 @@
 
     <div id="main">
         <!-- visible when the user has won -->
+        <div id="timer">0.00</div>
+
         <div id="win-container">
             <h1>You've Won!</h1>
             <label id="score_label"></label>

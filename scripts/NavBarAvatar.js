@@ -1,5 +1,4 @@
 function getNavbarIcon(avatar_num){
-    console.log(avatar_num);
     const mouth_assets = ['mouth/open.png', 'mouth/sad.png', 'mouth/smiling.png', 'mouth/straight.png', 'mouth/surprise.png', 'mouth/teeth.png'];
     const eye_assets = ['eyes/closed.png', 'eyes/laughing.png', 'eyes/long.png', 'eyes/normal.png', 'eyes/rolling.png', 'eyes/winking.png'];
     const skin_assets = ['skin/green.png', 'skin/red.png', 'skin/yellow.png']
