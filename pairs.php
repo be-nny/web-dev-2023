@@ -20,6 +20,8 @@
 
     <div id="main">
         <!-- visible when the user has won -->
+        <div id="timer">0.00</div>
+
         <div id="win-container">
             <h1>You've Won!</h1>
             <label id="score_label"></label>
@@ -31,7 +33,12 @@
 
         <div class="start-container">
             <button id='start-btn' type="button" onclick="start();">Start Game!</button>
+
+            <img src="assets/splash-image.png" id="splash_img">
         </div>
+
+
+
         <div class="game-container">
         </div>
     </div>

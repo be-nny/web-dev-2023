@@ -1,5 +1,5 @@
 <?php
-const SCORES_FILE_PATH = '../store/scores.json';
+const SCORES_FILE_PATH = '../scores.json';
 
 if(isset($_POST['data']) && isset($_POST['user'])){
     $raw_data = json_decode(file_get_contents(SCORES_FILE_PATH), true);
@@ -58,7 +58,7 @@ if(isset($_POST['data']) && isset($_POST['user'])){
 
 function insertScore($new_score_obj, $scores, $new_score) : array {
     $temp = $scores;
-
+    $isInserted = false;
     // if the score is the first one to be written to the json file
     if(sizeof($scores) == 0){
         $temp[] = $new_score_obj;
@@ -68,9 +68,15 @@ function insertScore($new_score_obj, $scores, $new_score) : array {
             
             foreach ($scores[$i] as $key => $value){
                 if(intval($value['score']) < intval($new_score)){
+                    $isInserted = true;
                     array_splice($temp, $i, 0, array($new_score_obj));
                 }
             }
+        }
+
+        // if it's the new lowest score
+        if(!$isInserted){
+            array_push($temp, $new_score_obj);
         }
     }
 
