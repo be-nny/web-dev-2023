@@ -1,5 +1,5 @@
 <?php
-const SCORES_FILE_PATH = '../store/scores.json';
+const SCORES_FILE_PATH = '../scores.json';
 
 if(isset($_POST['data']) && isset($_POST['user'])){
     $raw_data = json_decode(file_get_contents(SCORES_FILE_PATH), true);
@@ -47,7 +47,6 @@ if(isset($_POST['data']) && isset($_POST['user'])){
 
     // if it's a new user
     if($isNewUser){
-        echo 'new user';
         $new_score_val = $new_score_json[$_POST['user']]['score'];
         file_put_contents(SCORES_FILE_PATH, json_encode(insertScore($new_score_json, $raw_data, $new_score_val)), LOCK_EX);
     }

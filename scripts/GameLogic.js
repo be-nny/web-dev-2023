@@ -149,6 +149,7 @@ function onQuitClick(){
     let http = new XMLHttpRequest();
     let data = new FormData();
     const user = cookie('uname');
+
     const json_data = '{"' + user + '" : {"score": "' + score + '", "time": "' + time_taken_secs + '","attempts": "' + total_attempts + '"}}';
 
     data.append('data', JSON.stringify(json_data));
@@ -159,13 +160,13 @@ function onQuitClick(){
     };
     http.send(data);
 
-    window.location.replace("/html/index.php");
+    window.location.replace("/web-dev-2023/index.php");
 
 }
 
 function onTryAgainClick(){
     // replace with /html/
-    window.location.replace("/html/pairs.php");
+    window.location.replace("/web-dev-2023/pairs.php");
 }
 
 function cardClick(div){

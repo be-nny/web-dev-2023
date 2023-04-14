@@ -1,6 +1,6 @@
 <?php
 
-const SCORES_FILE_PATH = 'store/scores.json';
+const SCORES_FILE_PATH = 'scores.json';
 
 function getScoresTable(): void{
 
