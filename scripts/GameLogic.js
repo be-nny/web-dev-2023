@@ -51,6 +51,9 @@ function makeDeck(){
 /**
  * Creates a pair of cards
  *
+ * @param id {int} id of the pair of cards
+ * @param c1_id {int} unique id of card 1
+ * @param c2_id {int} unqiue id of card 2
  * @return Object of group of the same cards
  * */
 function createPair(id, c1_id, c2_id){
@@ -79,6 +82,7 @@ function createPair(id, c1_id, c2_id){
 /**
  * Checks to see if the card image already exists with in the deck
  *
+ * @param card {Object} card to be checked
  * @return Boolean for if there is a duplicate or not
  * */
 function isDuplicate(card) {
@@ -124,6 +128,9 @@ function setUpGame(){
 
 /**
  * Method adds a card object to an empty div in the game container
+ * @param div {div} empty div element
+ * @param card {Object} card obj to be added to empty div
+ *
  * */
 function addCardToDiv(div, card){
     let mouth_img = document.createElement("img");
@@ -224,20 +231,26 @@ function onTryAgainClick(){
     window.location.replace("/web-dev-2023/pairs.php");
 }
 
+/**
+ * Main method for handling user input.
+ *
+ * Method is responsible for calling the <code>flipAnimation()</code> and <code>flipBackAnimation()</code> and adding
+ * the found cards to the <code>found_cards</code> list.
+ *
+ * @param div {div} card that is clicked
+ * */
 function cardClick(div){
     // getting the card that is clicked
     // disable any other clicking
-    if(!click_div_buffer.includes(div)){
-        for(let c = 0; c < cards.length; c ++){
-            let cardClicked = cards[c];
-            if(cardClicked.unique_id == div.childNodes[3].value){
-                // <-- flip animation here -->
-                if(found_cards.indexOf(cardClicked) === -1){
-                    flipAnimation(div);
-                    click_card_buffer.push(cardClicked);
-                    click_div_buffer.push(div);
-                    break;
-                }
+    for(let c = 0; c < cards.length; c ++){
+        let cardClicked = cards[c];
+        if(cardClicked.unique_id == div.childNodes[3].value){
+            // <-- flip animation here -->
+            if(found_cards.indexOf(cardClicked) === -1){
+                flipAnimation(div);
+                click_card_buffer.push(cardClicked);
+                click_div_buffer.push(div);
+                break;
             }
         }
     }
@@ -273,7 +286,11 @@ function cardClick(div){
     checkWin();
 }
 
-
+/**
+ * flips card front side up
+ *
+ * @param div {div} div element of card to be flipped
+ * */
 function flipAnimation(div){
     let id = null;
     let pos = 0;
@@ -295,6 +312,11 @@ function flipAnimation(div){
     }
 }
 
+/**
+ * flips card back around
+ *
+ * @param div {div} card to be flipped back.
+ */
 function flipBackAnimation(div){
     let id = null;
     let pos = 180;
@@ -316,6 +338,10 @@ function flipBackAnimation(div){
     }
 }
 
+/**
+ * Method to start the game
+ * Called when 'start button' is pressed
+ * */
 function start() {
 
     // hiding the start button and showing the card pane
