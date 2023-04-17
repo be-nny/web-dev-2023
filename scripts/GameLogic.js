@@ -23,35 +23,68 @@ let card = {
     unique_id: null
 };
 
+/**
+ * Method creates card deck
+ *
+ * Pushes the cards onto the cards list
+ * */
 function makeDeck(){
     let unique_id = 0;
 
     for(let i = 0; i < num_pairs; i ++){
-        let rand_mouth = Math.floor(Math.random() * mouth_assets.length);
-        let rand_skin = Math.floor(Math.random() * skin_assets.length);
-        let rand_eyes = Math.floor(Math.random() * eye_assets.length);
+        let pair = createPair(i, unique_id, unique_id + 1);
+        let c1 = pair.c1;
+        let c2 = pair.c2;
+        while(isDuplicate(c1)){
+            pair = createPair(i, unique_id, unique_id + 1);
+            c1 = pair.c1;
+            c2 = pair.c2;
+        }
 
-        let c1 = Object.create(card);
-        c1.id = i;
-        c1.mouth = "/assets/emoji-assets/" + mouth_assets.at(rand_mouth);
-        c1.skin = "/assets/emoji-assets/" + skin_assets.at(rand_skin);
-        c1.eyes = "/assets/emoji-assets/" + eye_assets.at(rand_eyes);
-        c1.unique_id = unique_id;
-        unique_id += 1;
-
-        let c2 = Object.create(card);
-        c2.id = i;
-        c2.mouth = "/assets/emoji-assets/" + mouth_assets.at(rand_mouth);
-        c2.skin = "/assets/emoji-assets/" + skin_assets.at(rand_skin);
-        c2.eyes = "/assets/emoji-assets/" + eye_assets.at(rand_eyes);
-        c2.unique_id = unique_id;
-        unique_id += 1;
+        unique_id += 2;
 
         cards.push(c1);
         cards.push(c2);
     }
 }
 
+/**
+ * Creates a pair of cards
+ *
+ * @param id {int} id of the pair of cards
+ * @param c1_id {int} unique id of card 1
+ * @param c2_id {int} unqiue id of card 2
+ * @return Object of group of the same cards
+ * */
+function createPair(id, c1_id, c2_id){
+    let c1 = Object.create(card);
+    let c2 = Object.create(card);
+
+    let rand_mouth = Math.floor(Math.random() * mouth_assets.length);
+    let rand_skin = Math.floor(Math.random() * skin_assets.length);
+    let rand_eyes = Math.floor(Math.random() * eye_assets.length);
+
+    c1.id = id;
+    c1.mouth = "/assets/emoji-assets/" + mouth_assets.at(rand_mouth);
+    c1.skin = "/assets/emoji-assets/" + skin_assets.at(rand_skin);
+    c1.eyes = "/assets/emoji-assets/" + eye_assets.at(rand_eyes);
+    c1.unique_id = c1_id;
+
+    c2.id = id;
+    c2.mouth = "/assets/emoji-assets/" + mouth_assets.at(rand_mouth);
+    c2.skin = "/assets/emoji-assets/" + skin_assets.at(rand_skin);
+    c2.eyes = "/assets/emoji-assets/" + eye_assets.at(rand_eyes);
+    c2.unique_id = c2_id;
+
+    return {c1, c2};
+}
+
+/**
+ * Checks to see if the card image already exists with in the deck
+ *
+ * @param card {Object} card to be checked
+ * @return Boolean for if there is a duplicate or not
+ * */
 function isDuplicate(card) {
     cards.forEach((c) =>{
         if(card.eyes == c.eyes && card.skin == c.skin && card.eyes == c.eyes){
@@ -61,6 +94,11 @@ function isDuplicate(card) {
     return false;
 }
 
+/**
+ * Method sets up the game div to have a grid template layout
+ *
+ * Then assigns all the cards to a div container that is generated
+ * */
 function setUpGame(){
     document.getElementsByClassName('game-container')[0].style.gridTemplateColumns = 'auto '.repeat(num_pairs);
     for(let i = 0; i < num_pairs*2; i ++){
@@ -76,6 +114,7 @@ function setUpGame(){
 
     }
 
+    // assigning a card to a generated empty div
     let temp = Object.create(cards);
     for(let i = temp.length-1; i >=0; i --){
         let random_index = Math.floor(Math.random() * temp.length);
@@ -87,6 +126,12 @@ function setUpGame(){
     }
 }
 
+/**
+ * Method adds a card object to an empty div in the game container
+ * @param div {div} empty div element
+ * @param card {Object} card obj to be added to empty div
+ *
+ * */
 function addCardToDiv(div, card){
     let mouth_img = document.createElement("img");
     mouth_img.className = "card-img";
@@ -109,6 +154,10 @@ function addCardToDiv(div, card){
     div.appendChild(same_card_value);
 }
 
+
+/**
+ * This is called after a pair has been found to check if the user has won
+ * */
 function checkWin(){
     if(found_cards.length === cards.length){
         setTimeout(() => {
@@ -117,6 +166,9 @@ function checkWin(){
     }
 }
 
+/**
+ * Method makes the win container visible
+ * */
 function winModal(){
     clearInterval(timerInterval);
 
@@ -145,6 +197,13 @@ const cookie = (cookie_name) =>{
     }
 }
 
+/**
+ * If the user wants to save their score, a <code>XMLHttpRequest POST</code> request is made to
+ * <code>score_post.php</code> to add the score to the server.
+ *
+ * -- This redirects the user back to the home page --
+ *
+ * */
 function onQuitClick(){
     let http = new XMLHttpRequest();
     let data = new FormData();
@@ -164,15 +223,25 @@ function onQuitClick(){
 
 }
 
+/**
+ * If the user wants to try again, they are directed to the game page.
+ * */
 function onTryAgainClick(){
     // replace with /html/
     window.location.replace("/web-dev-2023/pairs.php");
 }
 
+/**
+ * Main method for handling user input.
+ *
+ * Method is responsible for calling the <code>flipAnimation()</code> and <code>flipBackAnimation()</code> and adding
+ * the found cards to the <code>found_cards</code> list.
+ *
+ * @param div {div} card that is clicked
+ * */
 function cardClick(div){
     // getting the card that is clicked
     // disable any other clicking
-
     for(let c = 0; c < cards.length; c ++){
         let cardClicked = cards[c];
         if(cardClicked.unique_id == div.childNodes[3].value){
@@ -217,7 +286,11 @@ function cardClick(div){
     checkWin();
 }
 
-
+/**
+ * flips card front side up
+ *
+ * @param div {div} div element of card to be flipped
+ * */
 function flipAnimation(div){
     let id = null;
     let pos = 0;
@@ -239,6 +312,11 @@ function flipAnimation(div){
     }
 }
 
+/**
+ * flips card back around
+ *
+ * @param div {div} card to be flipped back.
+ */
 function flipBackAnimation(div){
     let id = null;
     let pos = 180;
@@ -260,6 +338,10 @@ function flipBackAnimation(div){
     }
 }
 
+/**
+ * Method to start the game
+ * Called when 'start button' is pressed
+ * */
 function start() {
 
     // hiding the start button and showing the card pane
