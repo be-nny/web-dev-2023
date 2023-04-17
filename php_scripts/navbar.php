@@ -35,14 +35,11 @@ function getNavBar(): void {
             <ul>
                 <li id="home"><a href="index.php">Home</a></li>
                 <li id="user_login">'. $uname .'</li>
-                <li><div id="nav-bar-icon"></div></li>
+                <li><div id="nav-bar-icon"><script>getNavbarIcon();</script></div></li>
                 <li id="memory"><a href="pairs.php">Play Pairs</a></li>
                 <li id="leaderboard"><a href="leaderboard.php">Leader Board</a></li>
             </ul>
         </div>
-        <script>
-            getNavbarIcon('. $avatar_key .');
-        </script>
     ';
     }
 }
