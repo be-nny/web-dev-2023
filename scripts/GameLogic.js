@@ -1,4 +1,4 @@
-const num_pairs = 6;
+const num_pairs = 5;
 const skin_assets = ['skin/green.png', 'skin/red.png', 'skin/yellow.png']
 const eye_assets = ['eyes/closed.png', 'eyes/laughing.png', 'eyes/long.png', 'eyes/normal.png', 'eyes/rolling.png', 'eyes/winking.png'];
 const mouth_assets = ['mouth/open.png', 'mouth/sad.png', 'mouth/smiling.png', 'mouth/straight.png', 'mouth/surprise.png', 'mouth/teeth.png'];
@@ -172,17 +172,8 @@ function checkWin(){
 function winModal(){
     clearInterval(timerInterval);
 
-    setTimeout(() => {
-        for(let i = 0; i < document.getElementsByClassName('card-img').length; i ++){
-            document.getElementsByClassName('card-img')[i].style.visibility = 'hidden';
-        }
-        document.getElementsByClassName('game-container')[0].style.visibility = 'hidden';
-    }, 500);
-
-
+    document.getElementById('submitBtn').style.visibility = 'visible';
     score = Math.ceil(score_multiplier/(Math.log10(time_taken_secs)*total_attempts));
-
-    document.getElementById("win-container").style.visibility ='visible';
     document.getElementById('score_label').innerHTML = "Score: " + score;
     document.getElementById('time_label').innerHTML = "Time Taken: " + time_taken_secs + "s";
 }
@@ -205,6 +196,11 @@ const cookie = (cookie_name) =>{
  *
  * */
 function onQuitClick(){
+    postScore();
+    window.location.replace("/web-dev-2023/index.php");
+}
+
+function postScore(){
     let http = new XMLHttpRequest();
     let data = new FormData();
     const user = cookie('uname');
@@ -218,9 +214,6 @@ function onQuitClick(){
         console.log(this.responseText);
     };
     http.send(data);
-
-    window.location.replace("/web-dev-2023/index.php");
-
 }
 
 /**
@@ -228,6 +221,7 @@ function onQuitClick(){
  * */
 function onTryAgainClick(){
     // replace with /html/
+    postScore();
     window.location.replace("/web-dev-2023/pairs.php");
 }
 

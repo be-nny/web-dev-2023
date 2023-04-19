@@ -1,5 +1,8 @@
 let avatar_key = '000';
 
+/**
+ * Displays all faces in div for selection
+ * */
 function displayAllFaces(){
     const skin_assets = ['skin/green.png', 'skin/red.png', 'skin/yellow.png']
     let counter = 0;
@@ -15,6 +18,9 @@ function displayAllFaces(){
     });
 }
 
+/**
+ * Displays all eyes in div for selection
+ * */
 function displayAllEyes() {
     const eye_assets = ['eyes/closed.png', 'eyes/laughing.png', 'eyes/long.png', 'eyes/normal.png', 'eyes/rolling.png', 'eyes/winking.png'];
     let counter = 0;
@@ -31,6 +37,9 @@ function displayAllEyes() {
     });
 }
 
+/**
+ * Displays all eyes in div for selection
+ * */
 function displayAllMouths() {
     const mouth_assets = ['mouth/open.png', 'mouth/sad.png', 'mouth/smiling.png', 'mouth/straight.png', 'mouth/surprise.png', 'mouth/teeth.png'];
     let counter = 0;
@@ -50,6 +59,12 @@ String.prototype.replaceAt = function(index, replacement) {
     return this.substring(0, index) + replacement + this.substring(index + replacement.length);
 }
 
+/**
+ * Method called when an image is selected [face, mouth, eye]
+ *
+ * @param img image that is selected
+ * @param id  id of the image that is selected.
+ * */
 function selectImage(img, id){
     switch (id){
         case 'face_select':
@@ -63,6 +78,7 @@ function selectImage(img, id){
             break;
     }
 
+    // making the scale larger and adding a highlight around it
     for(let i = 0; i < document.getElementById(id).childNodes.length; i ++){
         let current_child = document.getElementById(id).children.item(i);
         current_child.style.scale = '1';
@@ -75,10 +91,16 @@ function selectImage(img, id){
     displayAvatar();
 }
 
+/**
+ * When an image is selected, hidden forum value is altered to set the avatar_key to the new key.
+ * */
 function setAvatarkey(){
     document.getElementById('avatar_key').setAttribute('value', avatar_key);
 }
 
+/**
+ * Displays the current configuration of the avatar
+ * */
 function displayAvatar(){
     const mouth_assets = ['mouth/open.png', 'mouth/sad.png', 'mouth/smiling.png', 'mouth/straight.png', 'mouth/surprise.png', 'mouth/teeth.png'];
     const eye_assets = ['eyes/closed.png', 'eyes/laughing.png', 'eyes/long.png', 'eyes/normal.png', 'eyes/rolling.png', 'eyes/winking.png'];

@@ -11,3 +11,4 @@
     <li>Leaderboard is autopopulated from a json file stored on the VM</li>
     <li>Users Avatar Icon is in the navbar</li>
 </ul>
+
