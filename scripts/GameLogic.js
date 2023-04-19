@@ -128,7 +128,7 @@ function setUpGame(){
 
 /**
  * Method adds a card object to an empty div in the game container
- * @param div {div} empty div element
+ * @param div empty div element
  * @param card {Object} card obj to be added to empty div
  *
  * */
@@ -197,6 +197,7 @@ const cookie = (cookie_name) =>{
  * */
 function onQuitClick(){
     postScore();
+    // replace with /index.php
     window.location.replace("/web-dev-2023/index.php");
 }
 
@@ -220,7 +221,7 @@ function postScore(){
  * If the user wants to try again, they are directed to the game page.
  * */
 function onTryAgainClick(){
-    // replace with /html/
+    // replace with /pairs.php
     postScore();
     window.location.replace("/web-dev-2023/pairs.php");
 }
@@ -283,7 +284,7 @@ function cardClick(div){
 /**
  * flips card front side up
  *
- * @param div {div} div element of card to be flipped
+ * @param div  div element of card to be flipped
  * */
 function flipAnimation(div){
     let id = null;
@@ -309,7 +310,7 @@ function flipAnimation(div){
 /**
  * flips card back around
  *
- * @param div {div} card to be flipped back.
+ * @param div  card to be flipped back.
  */
 function flipBackAnimation(div){
     let id = null;
@@ -343,10 +344,11 @@ function start() {
     document.getElementById("start-btn").style.visibility = 'hidden';
     document.getElementById("splash_img").style.visibility = 'hidden';
 
-
+    // making the deck
     makeDeck();
     setUpGame();
 
+    // starting the timer
     start_time = Date.now();
     timerInterval = setInterval(function (){
         let current_time = Date.now() / 1000;
