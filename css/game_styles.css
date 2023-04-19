@@ -1,13 +1,15 @@
 .game-container {
     display: grid;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
     width: 90%;
-
+    height: auto;
     border-radius: 7px;
     position: absolute;
     background-color: grey;
     box-shadow: 5px 5px 4px 3px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    top: 53%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     visibility: hidden;
@@ -33,7 +35,7 @@
     margin: 7px;
     height: 230px;
     padding: -15px;
-    width: 100%;
+    width: 90%;
     transform-style: preserve-3d;
     border-radius: 20px;
     box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.4);
@@ -41,7 +43,7 @@
 }
 
 .main-card-container {
-    width: 85%;
+    width: auto;
     perspective: 1000px;
     transition: all .1s ease-in;
     cursor: grab;
@@ -53,15 +55,27 @@
 
 #start-btn{
     position: relative;
-    border-color: #4c4c4c;
-    font-size: 20px;
-    width: 20%;
-    border-radius: 10px;
-    height: 40px;
+    width: 40%;
+    height: 60px;
+    font-size: 30px;
     left: 50%;
     transform: translate(-50%);
     margin-top: 100px;
+    border-radius: 20px;
+    background-color: blue;
 }
+
+#submitBtn{
+    width: 20%;
+    height: 60px;
+    font-size: 30px;
+    left: 50%;
+    visibility: hidden;
+    position: relative;
+    transform: translate(-50%);
+}
+
+
 
 #win-container{
     background-color: #cccccc;

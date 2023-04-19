@@ -5,6 +5,7 @@
     <title>Home</title>
 
     <link rel="stylesheet" href="/css/index_styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
     <?php
         include 'php_scripts/navbar.php';
