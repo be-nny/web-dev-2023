@@ -53,7 +53,7 @@ function makeDeck(){
  *
  * @param id {int} id of the pair of cards
  * @param c1_id {int} unique id of card 1
- * @param c2_id {int} unqiue id of card 2
+ * @param c2_id {int} unique id of card 2
  * @return Object of group of the same cards
  * */
 function createPair(id, c1_id, c2_id){
@@ -198,6 +198,7 @@ const cookie = (cookie_name) =>{
 function onQuitClick(){
     postScore();
     // replace with /index.php
+    // window.location.replace("/index.php");
     window.location.replace("/web-dev-2023/index.php");
 }
 
@@ -221,8 +222,9 @@ function postScore(){
  * If the user wants to try again, they are directed to the game page.
  * */
 function onTryAgainClick(){
-    // replace with /pairs.php
     postScore();
+    // replace with /pairs.php
+    // window.location.replace("/pairs.php");
     window.location.replace("/web-dev-2023/pairs.php");
 }
 
