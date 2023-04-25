@@ -11,6 +11,8 @@
     ?>
 
     <link rel="stylesheet" href="/css/game_styles.css">
+    <link rel="icon" type="image/x-icon" href="/assets/icon.png">
+
     <script type="text/javascript" src="scripts/GameLogic.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">

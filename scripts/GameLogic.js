@@ -87,12 +87,13 @@ function createPair(id, c1_id, c2_id){
  * @return Boolean for if there is a duplicate or not
  * */
 function isDuplicate(card) {
+    let found = false;
     cards.forEach((c) =>{
-        if(card.eyes == c.eyes && card.skin == c.skin && card.eyes == c.eyes){
-            return true;
+        if(card.eyes === c.eyes && card.skin === c.skin && card.eyes === c.eyes){
+            found = true;
         }
     });
-    return false;
+    return found;
 }
 
 /**

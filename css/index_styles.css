@@ -1,17 +1,7 @@
-.main img#splash_img {
+#main img#splash_img {
     max-width: 100%;
     width: 100%;
     height: auto;
-}
-
-.main img#play_img {
-    max-width: 90%;
-    width: 90%;
-    height: auto;
-    position: absolute;
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .splash_text {

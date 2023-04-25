@@ -15,7 +15,7 @@ function getNavBar(): void {
     if(!isset($uname)){
         echo '
         <link rel="stylesheet" href="/css/nav_bar_styles.css">
-                
+
         <div class="nav_bar">
             <ul>
                 <li id="home"><a href="index.php">Home</a></li>
@@ -29,6 +29,7 @@ function getNavBar(): void {
     } else {
         echo '
         <link rel="stylesheet" href="/css/nav_bar_styles.css">
+
         <script type="text/javascript" src="/scripts/NavBarAvatar.js"></script>
 
         <div class="nav_bar">

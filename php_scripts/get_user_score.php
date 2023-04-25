@@ -1,5 +1,5 @@
 <?php
-const SCORES_FILE_PATH = '../scores.json';
+const SCORES_FILE_PATH = 'scores.json';
 function getUserScore(): void{
 
     $usr = $_SESSION['usr_session_name'];
@@ -27,12 +27,13 @@ function getUserScore(): void{
 
     if ($isFound) {
         echo '
-            <label>Current Score: ' . $current_score . ' </label>
-            <label>Current Score: ' . $current_time . ' </label>
+            <hr>
+            <label>Your previous Score and Time: ' . $current_score . ', ' . $current_time . 's</label>
     
         ';
     } else {
         echo '
+            <hr>
             <label>You have no previous score!</label>
         ';
     }
