@@ -12,21 +12,24 @@
 
     <link rel="stylesheet" href="/css/leader_board_styles.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="/assets/leaderboard_icon.png">
 
 
 </head>
-<body>
+<body >
     <div id="header">
         <?php @getNavBar()?>
     </div>
 
     <div id="main">
         <div id="leader_title">Leaderboard Scores</div>
+
         <div id="table-container">
             <table id="leaderboard-table">
                 <?php getScoresTable();?>
             </table>
         </div>
+
     </div>
 
     <div id="footer">

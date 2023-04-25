@@ -19,9 +19,27 @@
     border-spacing: 2px;
 }
 
+@media (aspect-ratio: 9/16) {
+    #leader_title{
+        margin: auto;
+        font-size: 20px;
+        font-family: Verdana;
+        font-weight: 300;
+        text-align: center;
+        padding: 10px;
+    }
+}
+
+#splash_img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    position: absolute;
+}
+
 #leader_title{
     margin: auto;
-    font-size: 40px;
+    font-size: 30px;
     font-family: Verdana;
     font-weight: 300;
     text-align: center;
@@ -36,10 +54,11 @@
 #leaderboard-table td{
     text-align: center;
     background-color: white;
+    font-size: 15px;
 }
 
 #leaderboard-table th{
     background-color: blue;
-    font-size: 20px;
+    font-size: 15px;
     color: white;
 }

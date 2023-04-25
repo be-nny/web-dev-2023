@@ -74,6 +74,9 @@
     transform: translate(-50%);
 }
 
+#score_label, #time_label {
+    font-size: 15px;
+}
 
 
 #win-container{
@@ -105,17 +108,6 @@
     border-style: solid;
     border-color: #4c4c4c;
     margin: 5px;
-}
-
-#win-container#play_btn{
-    margin-left: 0;
-    margin-right: auto;
-}
-
-#win-container#quit_btn{
-    margin-right: 0;
-    margin-left: auto;
-
 }
 
 #splash_img {

@@ -7,9 +7,12 @@
     <?php
         include 'php_scripts/navbar.php';
         include 'php_scripts/footer.php';
+        include 'php_scripts/get_user_score.php';
     ?>
 
     <link rel="stylesheet" href="/css/game_styles.css">
+    <link rel="icon" type="image/x-icon" href="/assets/icon.png">
+
     <script type="text/javascript" src="scripts/GameLogic.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -37,7 +40,10 @@
                     </div>
                     <div class="modal-body">
                         <label id="score_label"></label>
+                        <br>
                         <label id="time_label"></label>
+                        <br>
+                        <?php getUserScore();?>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" onclick="onTryAgainClick();">Play Again</button>
@@ -52,8 +58,6 @@
             <button id='start-btn' type="button" class="btn btn-primary btn-lg" onclick="start();">Start the Game!</button>
             <img src="assets/splash-image.png" id="splash_img">
         </div>
-
-
 
         <div class="game-container"></div>
 

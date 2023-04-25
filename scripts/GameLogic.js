@@ -35,6 +35,7 @@ function makeDeck(){
         let pair = createPair(i, unique_id, unique_id + 1);
         let c1 = pair.c1;
         let c2 = pair.c2;
+
         while(isDuplicate(c1)){
             pair = createPair(i, unique_id, unique_id + 1);
             c1 = pair.c1;
@@ -53,7 +54,7 @@ function makeDeck(){
  *
  * @param id {int} id of the pair of cards
  * @param c1_id {int} unique id of card 1
- * @param c2_id {int} unqiue id of card 2
+ * @param c2_id {int} unique id of card 2
  * @return Object of group of the same cards
  * */
 function createPair(id, c1_id, c2_id){
@@ -86,12 +87,13 @@ function createPair(id, c1_id, c2_id){
  * @return Boolean for if there is a duplicate or not
  * */
 function isDuplicate(card) {
+    let found = false;
     cards.forEach((c) =>{
-        if(card.eyes == c.eyes && card.skin == c.skin && card.eyes == c.eyes){
-            return true;
+        if(card.eyes === c.eyes && card.skin === c.skin && card.eyes === c.eyes){
+            found = true;
         }
     });
-    return false;
+    return found;
 }
 
 /**
@@ -173,6 +175,7 @@ function winModal(){
     clearInterval(timerInterval);
 
     document.getElementById('submitBtn').style.visibility = 'visible';
+
     score = Math.ceil(score_multiplier/(Math.log10(time_taken_secs)*total_attempts));
     document.getElementById('score_label').innerHTML = "Score: " + score;
     document.getElementById('time_label').innerHTML = "Time Taken: " + time_taken_secs + "s";
@@ -198,6 +201,7 @@ const cookie = (cookie_name) =>{
 function onQuitClick(){
     postScore();
     // replace with /index.php
+    // window.location.replace("/index.php");
     window.location.replace("/web-dev-2023/index.php");
 }
 
@@ -221,8 +225,9 @@ function postScore(){
  * If the user wants to try again, they are directed to the game page.
  * */
 function onTryAgainClick(){
-    // replace with /pairs.php
     postScore();
+    // replace with /pairs.php
+    // window.location.replace("/pairs.php");
     window.location.replace("/web-dev-2023/pairs.php");
 }
 

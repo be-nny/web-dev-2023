@@ -1,18 +1,50 @@
-.login {
+#main {
+    margin-top: 1%;
     padding: 5px 5px 5px 5px;
     display: inline-block;
+    margin-left: 50%;
+    width: auto;
+    transform: translate(-50%);
+    height: 600px;
+    background-color: rgba(220,220,220,95%);
+    border-radius: 10px;
 }
 
-.login label{
+#splash_img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    position: absolute;
+}
+
+@media (max-aspect-ratio: 16/10) {
+    #main {
+        margin-top: 1%;
+        padding: 5px 5px 5px 5px;
+        display: inline-block;
+        margin-left: 25%;
+        width: auto;
+        transform: translate(-25%);
+        height: 600px;
+        background-color: rgba(220,220,220,95%);
+        border-radius: 10px;
+    }
+}
+
+#main label{
     font-family: Verdana;
 }
 
-.login form hr{
+#main form hr{
+    height: 2px;
+    border-radius: 1px;
+    background-color: #4c4c4c;
+    border: none;
     width: 100%;
 }
 
-.login form input#uname_input{
-    border-radius: 5px;
+#main form input#uname_input{
+    border-radius: 10px;
     border-color: dimgrey;
     width: 100%;
 }
@@ -23,12 +55,12 @@
     font-weight: bold;
     font-size: 20px;
     position: relative;
-    top: 150px;
-    height: 40px;
+    top: 120px;
+    padding: 5px 5px 5px 5px;
 
 }
 
-.login form label#valid_label{
+#main form label#valid_label{
     font-size: 12px;
     position: relative;
 }
@@ -41,7 +73,8 @@
 
 .avatarOverlay {
     position: absolute;
-    width: 150px;
+    left: 55%;
+    width: 120px;
     height: auto;
 }
 

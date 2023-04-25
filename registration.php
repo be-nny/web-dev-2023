@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="/css/register_styles.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="/assets/icon.png">
 
 </head>
 <body>
@@ -18,12 +19,13 @@
         <?php @getNavBar()?>
     </div>
 
-    <div class="login">
+    <img id="splash_img" src="assets/arcade-unsplash.jpg" alt="splash_screen">
+
+    <div id="main">
         <form id="create_form" action="php_scripts/register_user.php" method="post">
             <label for="uname">User Name</label>
             <br>
-
-            <input type="text" id="uname_input" name="new_user">
+            <input type="text" class="form-control" id="uname_input" name="new_user">
             <br>
 
             <label id="valid_label"></label>
@@ -45,10 +47,12 @@
             <input type="hidden" id="avatar_key" name="avatar_code">
             <br>
             <hr>
-            <div id="display_avatar"></div>
+            <div id="display_avatar"><script>displayAvatar();</script></div>
             <br>
 
-            <input id="register_submit" type="submit" value="Register" disabled>
+<!--            <input id="register_submit" type="submit" value="Register" disabled>-->
+            <button id="register_submit" type="submit" class="btn btn-secondary btn-lg" disabled>Submit</button>
+
         </form>
     </div>
 
