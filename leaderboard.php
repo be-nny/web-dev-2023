@@ -15,18 +15,20 @@
 
 
 </head>
-<body>
+<body >
     <div id="header">
         <?php @getNavBar()?>
     </div>
 
     <div id="main">
         <div id="leader_title">Leaderboard Scores</div>
+
         <div id="table-container">
             <table id="leaderboard-table">
                 <?php getScoresTable();?>
             </table>
         </div>
+
     </div>
 
     <div id="footer">

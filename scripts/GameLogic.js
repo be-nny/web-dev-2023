@@ -35,6 +35,7 @@ function makeDeck(){
         let pair = createPair(i, unique_id, unique_id + 1);
         let c1 = pair.c1;
         let c2 = pair.c2;
+
         while(isDuplicate(c1)){
             pair = createPair(i, unique_id, unique_id + 1);
             c1 = pair.c1;
@@ -173,6 +174,7 @@ function winModal(){
     clearInterval(timerInterval);
 
     document.getElementById('submitBtn').style.visibility = 'visible';
+
     score = Math.ceil(score_multiplier/(Math.log10(time_taken_secs)*total_attempts));
     document.getElementById('score_label').innerHTML = "Score: " + score;
     document.getElementById('time_label').innerHTML = "Time Taken: " + time_taken_secs + "s";

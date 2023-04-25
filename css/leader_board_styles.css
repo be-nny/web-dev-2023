@@ -30,6 +30,13 @@
     }
 }
 
+#splash_img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    position: absolute;
+}
+
 #leader_title{
     margin: auto;
     font-size: 30px;
