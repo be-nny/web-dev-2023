@@ -239,8 +239,8 @@ const cookie = (cookie_name) =>{
  * */
 function onQuitClick(){
     postScore();
-    window.location.replace("/index.php");
-    // window.location.replace("/web-dev-2023/index.php");
+    // window.location.replace("/index.php");
+    window.location.replace("/web-dev-2023/index.php");
 }
 
 function postScore(){
@@ -263,8 +263,8 @@ function postScore(){
  * */
 function onTryAgainClick(){
     postScore();
-    window.location.replace("/pairs.php");
-    // window.location.replace("/web-dev-2023/pairs.php");
+    // window.location.replace("/pairs.php");
+    window.location.replace("/web-dev-2023/pairs.php");
 }
 
 /**
