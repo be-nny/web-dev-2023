@@ -1,17 +1,14 @@
-.game-container {
+.game-grid {
     display: grid;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 5px;
-    width: 90%;
-    height: auto;
+    place-items: center;
+    grid-column-end: auto;
     border-radius: 7px;
-    position: absolute;
+    transform: translate(-50%);
+    position: relative;
+    left: 50%;
+    width: 900px;
     background-color: grey;
     box-shadow: 5px 5px 4px 3px rgba(0, 0, 0, 0.2);
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     visibility: hidden;
 }
 
@@ -24,7 +21,6 @@
     -webkit-user-drag: none;
     visibility: hidden;
     transform-style: preserve-3d;
-
 }
 
 .front-card-container {
@@ -33,9 +29,8 @@
     background-color: rgba(200, 200, 200);
     border: 10px solid white;
     margin: 7px;
-    height: 230px;
-    padding: -15px;
-    width: 90%;
+    height: 200px;
+    width: 130px;
     transform-style: preserve-3d;
     border-radius: 20px;
     box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.4);
@@ -59,7 +54,6 @@
     font-size: 30px;
     left: 50%;
     transform: translate(-50%);
-    margin-top: 100px;
     border-radius: 20px;
     background-color: blue;
 }
@@ -84,14 +78,11 @@
     padding: 5px;
     border-radius: 5px;
     box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.4);
-
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-
     font-family: Verdana;
-
     visibility: hidden;
 }
 
@@ -108,12 +99,6 @@
     border-style: solid;
     border-color: #4c4c4c;
     margin: 5px;
-}
-
-#splash_img {
-    max-width: 100%;
-    width: 100%;
-    height: auto;
 }
 
 #timer{

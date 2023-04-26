@@ -10,14 +10,6 @@
 
 }
 
-#leaderboard-table {
-    font-family: Verdana;
-    border-collapse: collapse;
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border-spacing: 2px;
-}
 
 @media (aspect-ratio: 9/16) {
     #leader_title{
@@ -44,6 +36,14 @@
     font-weight: 300;
     text-align: center;
     padding: 10px;
+}
+#leaderboard-table {
+    font-family: Verdana;
+    border-collapse: collapse;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-spacing: 2px;
 }
 
 #leaderboard-table td, th{

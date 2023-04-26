@@ -1,19 +1,28 @@
-const num_pairs = 5;
+/**
+ * @version 2
+ * @author Ben Abbott
+ * */
+
+const num_of_groups = 6;
+let group_size = 2;
+
 const skin_assets = ['skin/green.png', 'skin/red.png', 'skin/yellow.png']
 const eye_assets = ['eyes/closed.png', 'eyes/laughing.png', 'eyes/long.png', 'eyes/normal.png', 'eyes/rolling.png', 'eyes/winking.png'];
 const mouth_assets = ['mouth/open.png', 'mouth/sad.png', 'mouth/smiling.png', 'mouth/straight.png', 'mouth/surprise.png', 'mouth/teeth.png'];
 const score_multiplier = 1000;
+const level_stack = [4,3];
 
 let cards = [];
 let found_cards = [];
 let click_div_buffer = [];
 let click_card_buffer = [];
+let level_scores = [];
+let level = 1;
 
 let start_time = 0;
 let timerInterval;
 let time_taken_secs = 0;
-let score = 0;
-let total_attempts = 1;
+let num_attempts = 1;
 
 let card = {
     mouth: '',
@@ -31,21 +40,21 @@ let card = {
 function makeDeck(){
     let unique_id = 0;
 
-    for(let i = 0; i < num_pairs; i ++){
-        let pair = createPair(i, unique_id, unique_id + 1);
-        let c1 = pair.c1;
-        let c2 = pair.c2;
+    // adding the cards to the deck
+    for(let i = 0; i < num_of_groups; i ++){
+        let new_group = createGroup(i, unique_id);
 
-        while(isDuplicate(c1)){
-            pair = createPair(i, unique_id, unique_id + 1);
-            c1 = pair.c1;
-            c2 = pair.c2;
+        // checking for duplicates
+        while(isDuplicate(new_group)){
+            new_group = createGroup(i, unique_id);
         }
 
-        unique_id += 2;
+        // push the group to the card stack
+        new_group.forEach((card) =>{
+            cards.push(card);
+        })
 
-        cards.push(c1);
-        cards.push(c2);
+        unique_id += group_size;
     }
 }
 
@@ -53,47 +62,48 @@ function makeDeck(){
  * Creates a pair of cards
  *
  * @param id {int} id of the pair of cards
- * @param c1_id {int} unique id of card 1
- * @param c2_id {int} unique id of card 2
- * @return Object of group of the same cards
+ * @param unique_id_start {int} unique id to start the cards on
  * */
-function createPair(id, c1_id, c2_id){
-    let c1 = Object.create(card);
-    let c2 = Object.create(card);
+function createGroup(id, unique_id_start){
+    let group = [];
 
+    // adding the cards to the group stack
+    for(let i = 0; i < group_size; i ++){
+        group.push(Object.create(card));
+    }
+
+    // creating the random info for the cards
     let rand_mouth = Math.floor(Math.random() * mouth_assets.length);
     let rand_skin = Math.floor(Math.random() * skin_assets.length);
     let rand_eyes = Math.floor(Math.random() * eye_assets.length);
 
-    c1.id = id;
-    c1.mouth = "/assets/emoji-assets/" + mouth_assets.at(rand_mouth);
-    c1.skin = "/assets/emoji-assets/" + skin_assets.at(rand_skin);
-    c1.eyes = "/assets/emoji-assets/" + eye_assets.at(rand_eyes);
-    c1.unique_id = c1_id;
+    group.forEach((card) => {
+        card.id = id;
+        card.mouth = "/assets/emoji-assets/" + mouth_assets.at(rand_mouth);
+        card.skin = "/assets/emoji-assets/" + skin_assets.at(rand_skin);
+        card.eyes = "/assets/emoji-assets/" + eye_assets.at(rand_eyes);
+        card.unique_id = unique_id_start;
+        unique_id_start += 1;
 
-    c2.id = id;
-    c2.mouth = "/assets/emoji-assets/" + mouth_assets.at(rand_mouth);
-    c2.skin = "/assets/emoji-assets/" + skin_assets.at(rand_skin);
-    c2.eyes = "/assets/emoji-assets/" + eye_assets.at(rand_eyes);
-    c2.unique_id = c2_id;
+    });
 
-    return {c1, c2};
+    return group;
 }
 
 /**
  * Checks to see if the card image already exists with in the deck
  *
- * @param card {Object} card to be checked
+ * @param card card to be checked
  * @return Boolean for if there is a duplicate or not
  * */
-function isDuplicate(card) {
-    let found = false;
-    cards.forEach((c) =>{
-        if(card.eyes === c.eyes && card.skin === c.skin && card.eyes === c.eyes){
-            found = true;
+function isDuplicate(group) {
+    for(let i = 0; i < cards.length; i ++){
+        let c = cards[i];
+        if(group[0].skin === c.skin && group[0].mouth === c.mouth && group[0].eyes === c.eyes){
+            return true;
         }
-    });
-    return found;
+    }
+    return false;
 }
 
 /**
@@ -102,8 +112,8 @@ function isDuplicate(card) {
  * Then assigns all the cards to a div container that is generated
  * */
 function setUpGame(){
-    document.getElementsByClassName('game-container')[0].style.gridTemplateColumns = 'auto '.repeat(num_pairs);
-    for(let i = 0; i < num_pairs*2; i ++){
+    document.getElementsByClassName('game-grid')[0].style.gridTemplateColumns = 'auto '.repeat(num_of_groups);
+    for(let i = 0; i < num_of_groups * group_size; i ++){
         let front_div = document.createElement('div');
         let main_div = document.createElement('div');
 
@@ -112,7 +122,7 @@ function setUpGame(){
 
         main_div.className = 'main-card-container';
         main_div.appendChild(front_div);
-        document.getElementsByClassName('game-container')[0].appendChild(main_div);
+        document.getElementsByClassName('game-grid')[0].appendChild(main_div);
 
     }
 
@@ -160,25 +170,54 @@ function addCardToDiv(div, card){
 /**
  * This is called after a pair has been found to check if the user has won
  * */
-function checkWin(){
+function checkLevelComplete(){
     if(found_cards.length === cards.length){
-        setTimeout(() => {
-            winModal();
+
+        // setting the score info
+        clearInterval(timerInterval);
+        let score = Math.ceil(score_multiplier/(Math.log10(time_taken_secs)*num_attempts));
+        let score_data = '{"level_' + level + '": {"score": "' + score + '", "time": "' + time_taken_secs + '","attempts": "' + num_attempts + '"}}'
+
+        // adjusting for the next level
+        level_scores.push(score_data);
+        level += 1;
+
+        // setting up another level with a larger group size
+        if(level_stack.length > 0) {
+            group_size = level_stack.pop();
+
+            // flipping the cards over
+            setTimeout(() => {
+                document.getElementsByClassName('game-grid')[0].childNodes.forEach((div) => {
+                    flipBackAnimation(div.childNodes[0]);
+                });
+            }, 500);
+
+            // time out before changing to new level
+            setTimeout(() => {
+                document.getElementsByClassName('game-grid')[0].innerHTML = "";
+                // go again
+                start();
+
+            }, 1500);
+
+            // if the user has finished all levels
+        }else{
+            setTimeout(() => {
+                winModal();
             }, 1000);
+        }
     }
 }
+
 
 /**
  * Method makes the win container visible
  * */
 function winModal(){
-    clearInterval(timerInterval);
-
     document.getElementById('submitBtn').style.visibility = 'visible';
-
-    score = Math.ceil(score_multiplier/(Math.log10(time_taken_secs)*total_attempts));
-    document.getElementById('score_label').innerHTML = "Score: " + score;
-    document.getElementById('time_label').innerHTML = "Time Taken: " + time_taken_secs + "s";
+    // document.getElementById('score_label').innerHTML = "Score: " + score;
+    // document.getElementById('time_label').innerHTML = "Time Taken: " + time_taken_secs + "s";
 }
 
 const cookie = (cookie_name) =>{
@@ -200,7 +239,6 @@ const cookie = (cookie_name) =>{
  * */
 function onQuitClick(){
     postScore();
-    // replace with /index.php
     // window.location.replace("/index.php");
     window.location.replace("/web-dev-2023/index.php");
 }
@@ -209,8 +247,7 @@ function postScore(){
     let http = new XMLHttpRequest();
     let data = new FormData();
     const user = cookie('uname');
-
-    const json_data = '{"' + user + '" : {"score": "' + score + '", "time": "' + time_taken_secs + '","attempts": "' + total_attempts + '"}}';
+    const json_data = '{"' + user + '" : [' + level_scores + ']}';
 
     data.append('data', JSON.stringify(json_data));
     data.append('user', user);
@@ -226,7 +263,6 @@ function postScore(){
  * */
 function onTryAgainClick(){
     postScore();
-    // replace with /pairs.php
     // window.location.replace("/pairs.php");
     window.location.replace("/web-dev-2023/pairs.php");
 }
@@ -255,35 +291,47 @@ function cardClick(div){
         }
     }
 
-    // when two cards have been clicked
-    if(click_div_buffer.length > 1 && click_card_buffer.length > 1) {
-        let c1 = click_div_buffer.pop();
-        let c2 = click_div_buffer.pop();
+    // once the user has clicked enough cards to potentially make a match
+    if(click_div_buffer.length >= group_size && click_card_buffer.length >= group_size){
 
-        let card_1 = click_card_buffer.pop();
-        let card_2 = click_card_buffer.pop();
+        let isMatch = true;
 
-        click_div_buffer = [];
-        click_card_buffer = [];
+        for(let i = 0; i < click_card_buffer.length; i ++){
+            let c1 = click_card_buffer[i];
+            for(let j = 0; j < click_card_buffer.length; j ++){
+                let c2 = click_card_buffer[j];
+                if((c1.id !== c2.id) || (c1 === c2 && c1.unique_id === c2.unique_id && i != j)){
+                    isMatch = false;
+                    break;
+                }
+            }
 
-        if (card_1.id === card_2.id && card_1.unique_id !== card_2.unique_id) {
-            // if the card is a match
-            found_cards.push(card_1);
-            found_cards.push(card_2);
-        } else {
-            // <-- flip animation here (flip back) -->]
-            total_attempts += 1;
-
-            // flip them back
-            setTimeout(() => {
-                flipBackAnimation(c1);
-                setTimeout(() => {flipBackAnimation(c2);}, 500);
-            }, 800);
+            if(!isMatch){
+                break;
+            }
         }
+
+        // pushing all the cards to the found cards stack
+        if(isMatch){
+            click_card_buffer.forEach((card) =>{
+                found_cards.push(card);
+            });
+        } else{
+            // flipping the cards back
+            num_attempts += 1;
+            click_div_buffer.forEach((card_div) => {
+                setTimeout(() => {
+                    flipBackAnimation(card_div);
+                }, 800);
+            });
+        }
+
+        click_card_buffer = [];
+        click_div_buffer = [];
     }
 
     //checking if the user has won
-    checkWin();
+    checkLevelComplete();
 }
 
 /**
@@ -343,11 +391,18 @@ function flipBackAnimation(div){
  * Called when 'start button' is pressed
  * */
 function start() {
-
     // hiding the start button and showing the card pane
-    document.getElementsByClassName('game-container')[0].style.visibility = 'visible';
+    document.getElementsByClassName('game-grid')[0].style.visibility = 'visible';
     document.getElementById("start-btn").style.visibility = 'hidden';
-    document.getElementById("splash_img").style.visibility = 'hidden';
+
+    cards = [];
+    found_cards = [];
+    click_div_buffer = [];
+    click_card_buffer = [];
+
+    start_time = 0;
+    time_taken_secs = 0;
+    num_attempts = 1;
 
     // making the deck
     makeDeck();
