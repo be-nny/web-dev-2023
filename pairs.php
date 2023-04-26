@@ -47,7 +47,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" onclick="onTryAgainClick();">Play Again</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="onQuitClick();">Save and Quit</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="onQuitClick();">Quit</button>
                     </div>
                 </div>
             </div>
@@ -56,10 +56,13 @@
         <!-- start info before the game has started -->
         <div class="start-container">
             <button id='start-btn' type="button" class="btn btn-primary btn-lg" onclick="start();">Start the Game!</button>
-            <img src="assets/splash-image.png" id="splash_img">
         </div>
-
-        <div class="game-container"></div>
+        <div id="game-container">
+            <div class="game-grid"></div>
+        </div>
+    </div>
+    <br>
+    <br>
 
     <div class="footer">
         <?php @getFooter()?>
