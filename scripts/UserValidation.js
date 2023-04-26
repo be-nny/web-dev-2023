@@ -1,3 +1,9 @@
+/**
+ * @author Ben Abbott
+ * @version 1.0
+ * */
+
+
 document.querySelector('#uname_input').addEventListener('input', validate);
 
 const re = new RegExp(/[\\"!@#%&*()+=^{}\[\]—;:'<>?\/]/gmi);
@@ -9,9 +15,12 @@ function validate(){
         document.getElementById("register_submit").disabled = false;
         document.getElementById("valid_label").innerText = "Valid";
         document.getElementById("valid_label").style.color = 'green';
+        document.getElementById("uname_input").valid = 'true';
+
     } else{
         document.getElementById("register_submit").disabled = true;
         document.getElementById("valid_label").innerText = "Invalid";
         document.getElementById("valid_label").style.color = 'red';
+        document.getElementById("uname_input").valid = 'false';
     }
 }

@@ -5,7 +5,7 @@
 <ul>
     <li>Complex customisable avatar emoji (user selects any face, eye and mouth combo)</li>
     <li>Usernames are validated</li>
-    <li>Completed medium difficulty for the game</li>
+    <li>Completed complex difficulty for the game with 3 levels going from matching 2,3,4 cards each time</li>
     <li>Game has flip animations when the cards are clicked</li> 
     <li>Navigation bar dynamically changes if the user is using a registered session or not</li>
     <li>Leaderboard is autopopulated from a json file stored on the VM</li>

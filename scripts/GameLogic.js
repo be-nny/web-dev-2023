@@ -1,6 +1,6 @@
 /**
- * @version 2
  * @author Ben Abbott
+ * @version 2.1
  * */
 
 const num_of_groups = 6;
@@ -10,7 +10,7 @@ const skin_assets = ['skin/green.png', 'skin/red.png', 'skin/yellow.png']
 const eye_assets = ['eyes/closed.png', 'eyes/laughing.png', 'eyes/long.png', 'eyes/normal.png', 'eyes/rolling.png', 'eyes/winking.png'];
 const mouth_assets = ['mouth/open.png', 'mouth/sad.png', 'mouth/smiling.png', 'mouth/straight.png', 'mouth/surprise.png', 'mouth/teeth.png'];
 const score_multiplier = 1000;
-const level_stack = [4,3];
+const level_stack = [4, 3];
 
 let cards = [];
 let found_cards = [];
@@ -37,20 +37,20 @@ let card = {
  *
  * Pushes the cards onto the cards list
  * */
-function makeDeck(){
+function makeDeck() {
     let unique_id = 0;
 
     // adding the cards to the deck
-    for(let i = 0; i < num_of_groups; i ++){
+    for (let i = 0; i < num_of_groups; i++) {
         let new_group = createGroup(i, unique_id);
 
         // checking for duplicates
-        while(isDuplicate(new_group)){
+        while (isDuplicate(new_group)) {
             new_group = createGroup(i, unique_id);
         }
 
         // push the group to the card stack
-        new_group.forEach((card) =>{
+        new_group.forEach((card) => {
             cards.push(card);
         })
 
@@ -61,14 +61,14 @@ function makeDeck(){
 /**
  * Creates a pair of cards
  *
- * @param id {int} id of the pair of cards
+ * @param id {int} id of the group of cards
  * @param unique_id_start {int} unique id to start the cards on
  * */
-function createGroup(id, unique_id_start){
+function createGroup(id, unique_id_start) {
     let group = [];
 
     // adding the cards to the group stack
-    for(let i = 0; i < group_size; i ++){
+    for (let i = 0; i < group_size; i++) {
         group.push(Object.create(card));
     }
 
@@ -97,9 +97,9 @@ function createGroup(id, unique_id_start){
  * @return Boolean for if there is a duplicate or not
  * */
 function isDuplicate(group) {
-    for(let i = 0; i < cards.length; i ++){
+    for (let i = 0; i < cards.length; i++) {
         let c = cards[i];
-        if(group[0].skin === c.skin && group[0].mouth === c.mouth && group[0].eyes === c.eyes){
+        if (group[0].skin === c.skin && group[0].mouth === c.mouth && group[0].eyes === c.eyes) {
             return true;
         }
     }
@@ -111,9 +111,9 @@ function isDuplicate(group) {
  *
  * Then assigns all the cards to a div container that is generated
  * */
-function setUpGame(){
+function setUpGame() {
     document.getElementsByClassName('game-grid')[0].style.gridTemplateColumns = 'auto '.repeat(num_of_groups);
-    for(let i = 0; i < num_of_groups * group_size; i ++){
+    for (let i = 0; i < num_of_groups * group_size; i++) {
         let front_div = document.createElement('div');
         let main_div = document.createElement('div');
 
@@ -128,10 +128,12 @@ function setUpGame(){
 
     // assigning a card to a generated empty div
     let temp = Object.create(cards);
-    for(let i = temp.length-1; i >=0; i --){
+    for (let i = temp.length - 1; i >= 0; i--) {
         let random_index = Math.floor(Math.random() * temp.length);
 
-        document.getElementById(i.toString()).addEventListener('click', () => {cardClick(document.getElementById(i.toString()))}, false);
+        document.getElementById(i.toString()).addEventListener('click', () => {
+            cardClick(document.getElementById(i.toString()))
+        }, false);
 
         addCardToDiv(document.getElementById(i.toString()), temp[random_index]);
         temp.splice(random_index, 1);
@@ -144,7 +146,7 @@ function setUpGame(){
  * @param card {Object} card obj to be added to empty div
  *
  * */
-function addCardToDiv(div, card){
+function addCardToDiv(div, card) {
     let mouth_img = document.createElement("img");
     mouth_img.className = "card-img";
     mouth_img.src = card.mouth;
@@ -170,12 +172,12 @@ function addCardToDiv(div, card){
 /**
  * This is called after a pair has been found to check if the user has won
  * */
-function checkLevelComplete(){
-    if(found_cards.length === cards.length){
+function checkLevelComplete() {
+    if (found_cards.length === cards.length) {
 
         // setting the score info
         clearInterval(timerInterval);
-        let score = Math.ceil(score_multiplier/(Math.log10(time_taken_secs)*num_attempts));
+        let score = Math.ceil(score_multiplier / (Math.log10(time_taken_secs) * num_attempts));
         let score_data = '{"level_' + level + '": {"score": "' + score + '", "time": "' + time_taken_secs + '","attempts": "' + num_attempts + '"}}'
 
         // adjusting for the next level
@@ -183,7 +185,7 @@ function checkLevelComplete(){
         level += 1;
 
         // setting up another level with a larger group size
-        if(level_stack.length > 0) {
+        if (level_stack.length > 0) {
             group_size = level_stack.pop();
 
             // flipping the cards over
@@ -202,7 +204,7 @@ function checkLevelComplete(){
             }, 1500);
 
             // if the user has finished all levels
-        }else{
+        } else {
             setTimeout(() => {
                 winModal();
             }, 1000);
@@ -214,18 +216,29 @@ function checkLevelComplete(){
 /**
  * Method makes the win container visible
  * */
-function winModal(){
+function winModal() {
     document.getElementById('submitBtn').style.visibility = 'visible';
-    // document.getElementById('score_label').innerHTML = "Score: " + score;
-    // document.getElementById('time_label').innerHTML = "Time Taken: " + time_taken_secs + "s";
+    let lvl_1_scr = JSON.parse(level_scores[0]).level_1.score;
+    let lvl_1_time = JSON.parse(level_scores[0]).level_1.time;
+
+    let lvl_2_scr = JSON.parse(level_scores[1]).level_2.score;
+    let lvl_2_time = JSON.parse(level_scores[1]).level_2.time;
+
+    let lvl_3_scr = JSON.parse(level_scores[2]).level_3.score;
+    let lvl_3_time = JSON.parse(level_scores[2]).level_3.time;
+
+    document.getElementById('score_label').innerHTML = "LEVEL 1" + lvl_1_scr + ", " + lvl_1_time + "s" + "\nLEVEL 2 " + lvl_2_scr + ", " + lvl_2_time + "\nLEVEL 3 "+ lvl_3_scr + ", " + lvl_3_time + "s";
 }
 
-const cookie = (cookie_name) =>{
+/**
+ * Gets the username from the cookie
+ * */
+const cookie = (cookie_name) => {
     // Construct a RegExp object as to include the variable name
     const re = new RegExp(`(?<=${cookie_name}=)[^;]*`);
-    try{
+    try {
         return document.cookie.match(re)[0];	// Will raise TypeError if cookie is not found
-    }catch{
+    } catch {
         return null;
     }
 }
@@ -237,13 +250,13 @@ const cookie = (cookie_name) =>{
  * -- This redirects the user back to the home page --
  *
  * */
-function onQuitClick(){
+function onQuitClick() {
     postScore();
-    window.location.replace("/index.php");
-    // window.location.replace("/web-dev-2023/index.php");
+    // window.location.replace("/index.php");
+    window.location.replace("/web-dev-2023/index.php");
 }
 
-function postScore(){
+function postScore() {
     let http = new XMLHttpRequest();
     let data = new FormData();
     const user = cookie('uname');
@@ -252,7 +265,7 @@ function postScore(){
     data.append('data', JSON.stringify(json_data));
     data.append('user', user);
     http.open('POST', '/php_scripts/score_post.php', true);
-    http.onload = function (){
+    http.onload = function () {
         console.log(this.responseText);
     };
     http.send(data);
@@ -261,10 +274,10 @@ function postScore(){
 /**
  * If the user wants to try again, they are directed to the game page.
  * */
-function onTryAgainClick(){
+function onTryAgainClick() {
     postScore();
-    window.location.replace("/pairs.php");
-    // window.location.replace("/web-dev-2023/pairs.php");
+    // window.location.replace("/pairs.php");
+    window.location.replace("/web-dev-2023/pairs.php");
 }
 
 /**
@@ -275,14 +288,14 @@ function onTryAgainClick(){
  *
  * @param div {div} card that is clicked
  * */
-function cardClick(div){
+function cardClick(div) {
     // getting the card that is clicked
     // disable any other clicking
-    for(let c = 0; c < cards.length; c ++){
+    for (let c = 0; c < cards.length; c++) {
         let cardClicked = cards[c];
-        if(cardClicked.unique_id == div.childNodes[3].value){
+        if (cardClicked.unique_id == div.childNodes[3].value) {
             // <-- flip animation here -->
-            if(found_cards.indexOf(cardClicked) === -1){
+            if (found_cards.indexOf(cardClicked) === -1) {
                 flipAnimation(div);
                 click_card_buffer.push(cardClicked);
                 click_div_buffer.push(div);
@@ -292,31 +305,31 @@ function cardClick(div){
     }
 
     // once the user has clicked enough cards to potentially make a match
-    if(click_div_buffer.length >= group_size && click_card_buffer.length >= group_size){
+    if (click_div_buffer.length >= group_size && click_card_buffer.length >= group_size) {
 
         let isMatch = true;
 
-        for(let i = 0; i < click_card_buffer.length; i ++){
+        for (let i = 0; i < click_card_buffer.length; i++) {
             let c1 = click_card_buffer[i];
-            for(let j = 0; j < click_card_buffer.length; j ++){
+            for (let j = 0; j < click_card_buffer.length; j++) {
                 let c2 = click_card_buffer[j];
-                if((c1.id !== c2.id) || (c1 === c2 && c1.unique_id === c2.unique_id && i != j)){
+                if ((c1.id !== c2.id) || (c1 === c2 && c1.unique_id === c2.unique_id && i != j)) {
                     isMatch = false;
                     break;
                 }
             }
 
-            if(!isMatch){
+            if (!isMatch) {
                 break;
             }
         }
 
         // pushing all the cards to the found cards stack
-        if(isMatch){
-            click_card_buffer.forEach((card) =>{
+        if (isMatch) {
+            click_card_buffer.forEach((card) => {
                 found_cards.push(card);
             });
-        } else{
+        } else {
             // flipping the cards back
             num_attempts += 1;
             click_div_buffer.forEach((card_div) => {
@@ -339,20 +352,21 @@ function cardClick(div){
  *
  * @param div  div element of card to be flipped
  * */
-function flipAnimation(div){
+function flipAnimation(div) {
     let id = null;
     let pos = 0;
     clearInterval(id);
 
     id = setInterval(frame, 2);
-    function frame(){
-        if(pos >= 180 ){
+
+    function frame() {
+        if (pos >= 180) {
             clearInterval(id);
-        } else{
-            pos ++ ;
+        } else {
+            pos++;
             div.style.transform = 'rotateY(' + pos + 'deg)';
-            if(pos > 90){
-                for(let i = 0; i < div.childNodes.length; i ++){
+            if (pos > 90) {
+                for (let i = 0; i < div.childNodes.length; i++) {
                     div.childNodes[i].style.visibility = 'visible';
                 }
             }
@@ -365,20 +379,21 @@ function flipAnimation(div){
  *
  * @param div  card to be flipped back.
  */
-function flipBackAnimation(div){
+function flipBackAnimation(div) {
     let id = null;
     let pos = 180;
     clearInterval(id);
 
     id = setInterval(frame, 2);
-    function frame(){
-        if(pos <= 0){
+
+    function frame() {
+        if (pos <= 0) {
             clearInterval(id);
-        } else{
-            pos --;
+        } else {
+            pos--;
             div.style.transform = 'rotateY(' + -pos + 'deg)';
-            if(pos < 90){
-                for(let i = 0; i < div.childNodes.length; i ++){
+            if (pos < 90) {
+                for (let i = 0; i < div.childNodes.length; i++) {
                     div.childNodes[i].style.visibility = 'hidden';
                 }
             }
@@ -392,31 +407,33 @@ function flipBackAnimation(div){
  * */
 function start() {
     // hiding the start button and showing the card pane
-    document.getElementsByClassName('game-grid')[0].style.visibility = 'visible';
-    document.getElementById("start-btn").style.visibility = 'hidden';
+    setTimeout(() =>{
+        document.getElementsByClassName('game-grid')[0].style.visibility = 'visible';
+        document.getElementById("start-btn").style.visibility = 'hidden';
+        cards = [];
+        found_cards = [];
+        click_div_buffer = [];
+        click_card_buffer = [];
 
-    cards = [];
-    found_cards = [];
-    click_div_buffer = [];
-    click_card_buffer = [];
+        start_time = 0;
+        time_taken_secs = 0;
+        num_attempts = 1;
 
-    start_time = 0;
-    time_taken_secs = 0;
-    num_attempts = 1;
+        // making the deck
+        makeDeck();
+        setUpGame();
 
-    // making the deck
-    makeDeck();
-    setUpGame();
+        // starting the timer
+        start_time = Date.now();
+        timerInterval = setInterval(function () {
+            let current_time = Date.now() / 1000;
+            time_taken_secs = Math.round(((current_time - start_time / 1000) + Number.EPSILON) * 100) / 100;
+            if (!time_taken_secs.toString().includes(".")) {
+                time_taken_secs += ".00";
+            }
+            document.getElementById("timer").innerHTML = time_taken_secs;
 
-    // starting the timer
-    start_time = Date.now();
-    timerInterval = setInterval(function (){
-        let current_time = Date.now() / 1000;
-        time_taken_secs = Math.round(((current_time - start_time / 1000) + Number.EPSILON) * 100) / 100;
-        if(!time_taken_secs.toString().includes(".")){
-            time_taken_secs += ".00";
-        }
-        document.getElementById("timer").innerHTML = time_taken_secs;
+        }, 10);
+    }, 500)
 
-    }, 10);
 }

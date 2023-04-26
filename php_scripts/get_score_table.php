@@ -47,10 +47,6 @@ function getScoresTable(): void{
 
             }
         }
-
-
-
-
     }
     echo $table;
 }

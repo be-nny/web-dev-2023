@@ -1,3 +1,9 @@
+@font-face {
+    font-family: "alarm_clock";
+    src: url("/assets/fonts/alarm_clock.ttf")
+}
+
+
 .game-grid {
     display: grid;
     place-items: center;
@@ -11,6 +17,15 @@
     box-shadow: 5px 5px 4px 3px rgba(0, 0, 0, 0.2);
     visibility: hidden;
 }
+
+#main img#splash_img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    z-index: -1000;
+    position: absolute;
+}
+
 
 .card-img {
     position: absolute;
@@ -47,17 +62,6 @@
     transform: scale(1.05);
 }
 
-#start-btn{
-    position: relative;
-    width: 40%;
-    height: 60px;
-    font-size: 30px;
-    left: 50%;
-    transform: translate(-50%);
-    border-radius: 20px;
-    background-color: blue;
-}
-
 #submitBtn{
     width: 20%;
     height: 60px;
@@ -68,7 +72,7 @@
     transform: translate(-50%);
 }
 
-#score_label, #time_label {
+#score_label {
     font-size: 15px;
 }
 
@@ -103,6 +107,12 @@
 
 #timer{
     font-family: Verdana;
-    font-size: 30px;
+    font-size: 40px;
     text-align: center;
+    color: white;
+}
+
+.start-container{
+    display: flex;
+    justify-content: center;
 }

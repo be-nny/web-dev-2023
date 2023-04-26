@@ -25,7 +25,7 @@
         <form id="create_form" action="php_scripts/register_user.php" method="post">
             <label for="uname">User Name</label>
             <br>
-            <input type="text" class="form-control" id="uname_input" name="new_user">
+            <input type="text" class="form-control" id="uname_input" name="new_user" required autofocus>
             <br>
 
             <label id="valid_label"></label>

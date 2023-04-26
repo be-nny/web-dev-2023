@@ -11,6 +11,8 @@
     ?>
 
     <link rel="stylesheet" href="/css/game_styles.css">
+    <link rel="stylesheet" href="/css/play_button_styles.css">
+
     <link rel="icon" type="image/x-icon" href="/assets/icon.png">
 
     <script type="text/javascript" src="scripts/GameLogic.js"></script>
@@ -26,8 +28,33 @@
     </div>
 
     <div id="main">
+        <img id="splash_img" src="assets/arcade-unsplash.jpg" alt="splash_screen">
+
         <div id="timer">0.00</div>
         <button id="submitBtn" type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#myModal">Submit</button>
+
+        <div class="modal fade" id="howToPlayModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">How to Play</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h1>Welcome to Pairs!</h1>
+                        <br>
+                        <p>Win the game by matching cards by flipping them over. Each level will require you to match 2
+                        then 3 then 4 cards. Then at the end, your score will be calculated by the number of attempts it
+                        took you, and the time it took you to complete the level!</p>
+                        <br>
+                        <p>Good Luck!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Okay!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Win Modal -->
         <div class="modal fade" id="myModal" role="dialog">
@@ -41,8 +68,6 @@
                     <div class="modal-body">
                         <label id="score_label"></label>
                         <br>
-                        <label id="time_label"></label>
-                        <br>
                         <?php getUserScore();?>
                     </div>
                     <div class="modal-footer">
@@ -55,7 +80,11 @@
 
         <!-- start info before the game has started -->
         <div class="start-container">
-            <button id='start-btn' type="button" class="btn btn-primary btn-lg" onclick="start();">Start the Game!</button>
+            <button class="button-82-pushable" id="start-btn" role="button" onclick="start();">
+                <span class="button-82-shadow"></span>
+                <span class="button-82-edge"></span>
+                <span class="button-82-front text">Start the Game!</span>
+            </button>
         </div>
         <div id="game-container">
             <div class="game-grid"></div>
@@ -63,6 +92,12 @@
     </div>
     <br>
     <br>
+
+    <script>
+        $(document).ready(function(){
+            $("#howToPlayModal").modal('show');
+        });
+    </script>
 
     <div class="footer">
         <?php @getFooter()?>
