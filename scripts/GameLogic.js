@@ -227,7 +227,7 @@ function winModal() {
     let lvl_3_scr = JSON.parse(level_scores[2]).level_3.score;
     let lvl_3_time = JSON.parse(level_scores[2]).level_3.time;
 
-    document.getElementById('score_label').innerHTML = "LEVEL 1" + lvl_1_scr + ", " + lvl_1_time + "s" + "\nLEVEL 2 " + lvl_2_scr + ", " + lvl_2_time + "\nLEVEL 3 "+ lvl_3_scr + ", " + lvl_3_time + "s";
+    document.getElementById('score_label').innerHTML = "LEVEL 1 " + lvl_1_scr + ", " + lvl_1_time + "s" + "\nLEVEL 2 " + lvl_2_scr + ", " + lvl_2_time + "\nLEVEL 3 "+ lvl_3_scr + ", " + lvl_3_time + "s";
 }
 
 /**
