@@ -1,3 +1,8 @@
+/**
+ * @author Ben Abbott
+ * @version 1.0
+ * */
+
 const navBarCookie = (cookie_name) =>{
     // Construct a RegExp object as to include the variable name
     const re = new RegExp(`(?<=${cookie_name}=)[^;]*`);

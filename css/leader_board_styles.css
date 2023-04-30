@@ -10,6 +10,13 @@
 
 }
 
+#main img#splash_img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+}
+
 
 @media (aspect-ratio: 9/16) {
     #leader_title{
@@ -35,8 +42,12 @@
     font-family: Verdana;
     font-weight: 300;
     text-align: center;
+    position: relative;
     padding: 10px;
+    z-index: 100;
+    color: white;
 }
+
 #leaderboard-table {
     font-family: Verdana;
     border-collapse: collapse;
@@ -49,6 +60,7 @@
 #leaderboard-table td, th{
     border: 1px solid black;
     font-size: 15px;
+    padding: 5px;
 }
 
 #leaderboard-table td{
@@ -61,4 +73,5 @@
     background-color: blue;
     font-size: 15px;
     color: white;
+    padding: 5px;
 }

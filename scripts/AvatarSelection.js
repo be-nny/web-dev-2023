@@ -1,3 +1,8 @@
+/**
+ * @author Ben Abbott
+ * @version 1
+ * */
+
 let avatar_key = '000';
 
 /**

@@ -40,11 +40,10 @@ function getScoresTable(): void{
                             <td>' . $score_list[2]['level_3']['score'] .'</td>
                             <td>' . $score_list[2]['level_3']['time'] .'</td>
 
-                            <td>' . intval($score_list[0]['level_1']['score']) + intval($score_list[1]['level_2']['score']) + intval($score_list[2]['level_3']['score']) .'</td>
-                            <td>' . floatval($score_list[0]['level_1']['time']) + floatval($score_list[1]['level_2']['time']) + floatval($score_list[2]['level_3']['time']) .'</td>
+                            <td>' . (intval($score_list[0]['level_1']['score']) + intval($score_list[1]['level_2']['score']) + intval($score_list[2]['level_3']['score'])) .'</td>
+                            <td>' . (floatval($score_list[0]['level_1']['time']) + floatval($score_list[1]['level_2']['time']) + floatval($score_list[2]['level_3']['time'])) .'</td>
                     </tr>';
                 $table .= $row;
-
             }
         }
     }
