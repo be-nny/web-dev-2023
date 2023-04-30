@@ -13,5 +13,6 @@
     <li>Username and avatar are stored as cookies and used in session</li>
     <li>If a user logs into a different browser/tab with the same username, the 
     corresponding score will be altered once logged in</li>
+
 </ul>
 
